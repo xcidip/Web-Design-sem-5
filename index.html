@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CHROMASYNC VR FILM FESTIVAL 2026 – Mezinárodní festival VR filmů, 360° kinematografie, prostorového zvuku a 6DOF zážitků v Praze.">
+  <title>CHROMASYNC VR FILM FESTIVAL 2026 | Praha</title>
+  
+  <!-- Modern Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme">
+  <!-- Interactive Ambient Glow Canvas Background -->
+  <canvas id="ambient-canvas" class="ambient-canvas" aria-hidden="true"></canvas>
+
+  <!-- Walkthrough Helper Bar (Prototypový asistent pro testování scénářů) -->
+  <aside class="scenario-helper-banner" id="scenario-helper">
+    <div class="helper-content">
+      <span class="helper-badge">🧪 Testování prototypu</span>
+      <span class="helper-text">Rychlé ověření scénářů ze specifikace:</span>
+      <button class="helper-btn" id="btn-run-scenario-1">▶ Scénář 1: Gamer & 6DOF Haptika</button>
+      <button class="helper-btn" id="btn-run-scenario-2">▶ Scénář 2: Režisér Mateo Silva</button>
+      <button class="helper-btn-reset" id="btn-reset-prototype" title="Resetovat filtry a rozvrh">↺ Obnovit</button>
+    </div>
+  </aside>
+
+  <!-- Navigation Bar (Glassmorphic Header) -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="#hero" class="brand-logo" id="brand-logo">
+        <span class="logo-text">CHROMA<span class="text-gradient">SYNC</span></span>
+        <span class="logo-edition">2026</span>
+      </a>
+
+      <!-- Desktop & Tablet Navigation -->
+      <nav class="main-nav" id="main-nav" aria-label="Hlavní navigace">
+        <a href="#program-section" class="nav-link active" data-section="program">
+          <span class="nav-icon">📅</span> Program
+        </a>
+        <a href="#creators-section" class="nav-link" data-section="creators">
+          <span class="nav-icon">👥</span> Tvůrci
+        </a>
+        <a href="#stages-section" class="nav-link" data-section="stages">
+          <span class="nav-icon">🏛️</span> Scény
+        </a>
+        <a href="#showcase-section" class="nav-link" data-section="showcase">
+          <span class="nav-icon">🥽</span> 3D Showcase
+        </a>
+        <a href="#practical-section" class="nav-link" data-section="practical">
+          <span class="nav-icon">ℹ️</span> Praktické
+        </a>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="header-actions">
+        <button class="btn-schedule-badge" id="btn-open-schedule-drawer" aria-label="Otevřít můj program">
+          <span class="icon">🔖</span>
+          <span class="label">Můj rozvrh</span>
+          <span class="badge" id="schedule-counter">0</span>
+        </button>
+
+        <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Přepnout navigaci" aria-expanded="false">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Floating Bottom Navigation (Mobile-first ergonomics) -->
+  <nav class="mobile-bottom-nav" aria-label="Mobilní rychlá navigace">
+    <a href="#program-section" class="mobile-nav-item active" data-section="program">
+      <span class="m-icon">📅</span>
+      <span class="m-label">Program</span>
+    </a>
+    <a href="#creators-section" class="mobile-nav-item" data-section="creators">
+      <span class="m-icon">👥</span>
+      <span class="m-label">Tvůrci</span>
+    </a>
+    <a href="#stages-section" class="mobile-nav-item" data-section="stages">
+      <span class="m-icon">🏛️</span>
+      <span class="m-label">Scény</span>
+    </a>
+    <a href="#showcase-section" class="mobile-nav-item" data-section="showcase">
+      <span class="m-icon">🥽</span>
+      <span class="m-label">3D Lab</span>
+    </a>
+    <a href="#practical-section" class="mobile-nav-item" data-section="practical">
+      <span class="m-icon">ℹ️</span>
+      <span class="m-label">Info</span>
+    </a>
+  </nav>
+
+  <main id="main-content">
+    <!-- Hero Section -->
+    <section class="hero-section" id="hero">
+      <div class="hero-background-effects">
+        <div class="radial-glow glow-1"></div>
+        <div class="radial-glow glow-2"></div>
+      </div>
+
+      <div class="container hero-container">
+        <div class="hero-text-content">
+          <div class="hero-tag-pill">
+            <span class="pulse-dot"></span>
+            <span>4. ročník | 23. – 25. října 2026 | Praha, Výstaviště</span>
+          </div>
+
+          <h1 class="hero-title">
+            Za hranicemi <br>
+            <span class="text-gradient">plochého plátna.</span>
+          </h1>
+
+          <p class="hero-subtitle">
+            Vstupte do mezinárodního festivalu VR kinematografie, prostorového zvuku a 6DOF interaktivních světů. 60 filmů a zážitků ve 4 imerzivních scénách.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#program-section" class="btn btn-primary btn-glow">
+              <span>Prozkoumat program</span>
+              <span class="arrow">↓</span>
+            </a>
+            <a href="#showcase-section" class="btn btn-glass">
+              <span>3D Zkušebna headsetu</span>
+              <span class="icon">✨</span>
+            </a>
+          </div>
+
+          <div class="hero-stats-row">
+            <div class="stat-box">
+              <span class="stat-number">3</span>
+              <span class="stat-label">Dny imerze</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-box">
+              <span class="stat-number">4</span>
+              <span class="stat-label">Imerzivní scény</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-box">
+              <span class="stat-number">60</span>
+              <span class="stat-label">Světových tvůrců</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-box">
+              <span class="stat-number">60</span>
+              <span class="stat-label">VR děl & akcí</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual-card">
+          <div class="interactive-headset-orb" id="headset-interactive-orb">
+            <div class="orb-ring ring-1"></div>
+            <div class="orb-ring ring-2"></div>
+            <div class="orb-core">
+              <div class="vr-hmd-graphic">
+                <div class="visor-glass"></div>
+                <div class="visor-sensor-left"></div>
+                <div class="visor-sensor-right"></div>
+                <div class="visor-beam"></div>
+              </div>
+            </div>
+            <div class="orb-floating-badge badge-top">Spatial Audio 64ch</div>
+            <div class="orb-floating-badge badge-bottom">6DOF Room-scale & Haptics</div>
+          </div>
+          <div class="orb-caption">
+            <span>💡 Pohybujte myší / prstem pro holografickou rotaci</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROGRAM SECTION (Klíčová interaktivní část) -->
+    <section class="section program-section" id="program-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">Festivalový harmonogram</div>
+          <h2 class="section-title">Interaktivní <span class="text-gradient">program festivalu</span></h2>
+          <p class="section-subtitle">
+            Filtrujte 60 programových položek podle dne, scény, hardwaru či žánru a sestavte si svůj osobní festivalový harmonogram.
+          </p>
+        </div>
+
+        <!-- Interactive Program Controls (Filter Toolbar) -->
+        <div class="program-toolbar">
+          <!-- Day Selector Tabs -->
+          <div class="day-tabs-container" role="tablist" aria-label="Výběr festivalového dne">
+            <button class="day-tab active" data-day="all" role="tab" aria-selected="true">
+              <span class="day-code">Vše</span>
+              <span class="day-title">Celý festival (60)</span>
+            </button>
+            <button class="day-tab" data-day="1" role="tab" aria-selected="false">
+              <span class="day-code">PÁ 23.10.</span>
+              <span class="day-title">Den 1: Zahájení & Vize</span>
+            </button>
+            <button class="day-tab" data-day="2" role="tab" aria-selected="false">
+              <span class="day-code">SO 24.10.</span>
+              <span class="day-title">Den 2: Velká sobota</span>
+            </button>
+            <button class="day-tab" data-day="3" role="tab" aria-selected="false">
+              <span class="day-code">NE 25.10.</span>
+              <span class="day-title">Den 3: Finále & Ceny</span>
+            </button>
+          </div>
+
+          <!-- Secondary Filter Controls -->
+          <div class="filter-controls-row">
+            <!-- Fulltext Search Input -->
+            <div class="search-input-wrapper">
+              <span class="search-icon">🔍</span>
+              <input type="search" id="program-search-input" placeholder="Hledat film, tvůrce, téma, např. 'Haptika', 'Kybernetický', 'Dokument'..." aria-label="Vyhledávání v programu">
+              <button class="clear-search-btn" id="btn-clear-search" aria-label="Vymazat vyhledávání">✕</button>
+            </div>
+
+            <!-- Stage Filter Dropdown -->
+            <div class="filter-dropdown-wrapper">
+              <label for="filter-stage-select" class="sr-only">Filtr scény</label>
+              <select id="filter-stage-select" aria-label="Filtrovat podle scény">
+                <option value="all">Všechny scény (4)</option>
+                <option value="stage-dome-alpha">Dome Alpha (Spatial HoloCinema)</option>
+                <option value="stage-matrix-6dof">Matrix Arena (6DOF & Haptika)</option>
+                <option value="stage-neon-creators">Neon Stage (Creators & Talks)</option>
+                <option value="stage-oasis-chill">Oasis Hub (Ambient & Sensory)</option>
+              </select>
+            </div>
+
+            <!-- Technology / Hardware Filter -->
+            <div class="filter-dropdown-wrapper">
+              <label for="filter-tech-select" class="sr-only">Filtr technologie</label>
+              <select id="filter-tech-select" aria-label="Filtrovat podle technologie">
+                <option value="all">Všechny technologie / formáty</option>
+                <option value="6dof">6DOF Volný pohyb v prostoru</option>
+                <option value="haptic">Haptická vesta & dotek</option>
+                <option value="360">360° 3D Stereoskopický film</option>
+                <option value="visionpro">Apple Vision Pro / Hand-tracking</option>
+                <option value="talk">Přednáška & Masterclass</option>
+              </select>
+            </div>
+
+            <!-- Fast Quick-Pills for Popular Tags -->
+            <div class="quick-pills-row" id="quick-pills-container">
+              <span class="pill-label">Rychlé filtry:</span>
+              <button class="quick-pill" data-pill="haptic">🦺 Haptika</button>
+              <button class="quick-pill" data-pill="6dof">🕹️ 6DOF</button>
+              <button class="quick-pill" data-pill="sci-fi">🚀 Sci-Fi</button>
+              <button class="quick-pill" data-pill="kids">👶 Rodina & Děti</button>
+              <button class="quick-pill" data-pill="cz">🇨🇿 Česká tvorba</button>
+            </div>
+          </div>
+
+          <!-- Active Filter Status & Result Count -->
+          <div class="filter-status-bar">
+            <span class="results-count" id="results-count-text">Zobrazeno 60 programových položek</span>
+            <button class="btn-text-reset" id="btn-reset-filters">Obnovit filtry</button>
+          </div>
+        </div>
+
+        <!-- Program Grid Container -->
+        <div class="program-grid" id="program-items-grid" aria-live="polite">
+          <!-- Dynamically populated via app.js -->
+        </div>
+
+        <!-- Empty State (No results match) -->
+        <div class="empty-state hidden" id="program-empty-state">
+          <div class="empty-icon">🛰️</div>
+          <h3>Žádný program neodpovídá vybraným filtrům</h3>
+          <p>Zkuste upravit hledaný výraz nebo resetovat filtry scény a technologie.</p>
+          <button class="btn btn-glass" id="btn-empty-reset">Zobrazit celý program</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- CREATORS / PERFORMERS SECTION -->
+    <section class="section creators-section" id="creators-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">Mezinárodní i domácí tvůrci</div>
+          <h2 class="section-title">Účinkující & <span class="text-gradient">VR studia</span></h2>
+          <p class="section-subtitle">
+            60 vizionářů ze světa prostorového filmu, herního designu, zvuku a generativního umění.
+          </p>
+        </div>
+
+        <!-- Creators Search & Role Tabs -->
+        <div class="creators-toolbar">
+          <div class="search-input-wrapper">
+            <span class="search-icon">🔍</span>
+            <input type="search" id="creators-search-input" placeholder="Hledat tvůrce, např. 'Mateo Silva', 'Elena Rostova', 'Atlas V'..." aria-label="Hledat tvůrce">
+          </div>
+
+          <div class="role-tags-pills" id="creators-role-pills">
+            <button class="role-pill active" data-role="all">Všichni (60)</button>
+            <button class="role-pill" data-role="Režisér">Režiséři</button>
+            <button class="role-pill" data-role="Studio">VR Studia</button>
+            <button class="role-pill" data-role="3D">3D & VFX</button>
+            <button class="role-pill" data-role="Audio">Zvuk & Hudba</button>
+            <button class="role-pill" data-role="Česko">🇨🇿 Česká scéna</button>
+          </div>
+        </div>
+
+        <!-- Creators Grid -->
+        <div class="creators-grid" id="creators-grid">
+          <!-- Dynamically populated via app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- STAGES / VENUES SECTION -->
+    <section class="section stages-section" id="stages-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">Prostory a technologie</div>
+          <h2 class="section-title">Festivalové <span class="text-gradient">scény & zóny</span></h2>
+          <p class="section-subtitle">
+            Čtyři špičkově vybavené pavilony na Výstavišti Praha přizpůsobené různým formátům imerze.
+          </p>
+        </div>
+
+        <div class="stages-cards-grid" id="stages-grid">
+          <!-- Dynamically populated via app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 3D SHOWCASE / INTERACTIVE LAB SECTION -->
+    <section class="section showcase-section" id="showcase-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">Interaktivní 3D laboratoř</div>
+          <h2 class="section-title">Zkušebna imerze & <span class="text-gradient">FOV Simulátor</span></h2>
+          <p class="section-subtitle">
+            Vyzkoušejte si rozdíl mezi tradičním 360° videem a plným 6DOF pohybem v prostoru v našem interaktivním simulátoru.
+          </p>
+        </div>
+
+        <div class="showcase-interactive-panel">
+          <div class="showcase-viewport">
+            <canvas id="fov-simulator-canvas" class="fov-canvas" width="600" height="380"></canvas>
+            <div class="viewport-hud">
+              <span class="hud-item" id="hud-mode-display">Mód: 6DOF Room-scale</span>
+              <span class="hud-item" id="hud-fps-display">90 FPS | Spatial Stereo</span>
+            </div>
+          </div>
+
+          <div class="showcase-controls">
+            <h3 class="panel-heading">Nastavení simulace headsetu</h3>
+            <p class="panel-description">
+              Přepínejte technologie zobrazení a sledujte, jak se mění volnost pohybu diváka ve virtuální scéně.
+            </p>
+
+            <div class="sim-mode-buttons">
+              <button class="btn-mode active" id="btn-mode-6dof" data-mode="6dof">
+                <span class="mode-title">6DOF Room-scale</span>
+                <span class="mode-desc">Volný pohyb hlavou i tělem ve 3D prostoru (Matrix Arena)</span>
+              </button>
+
+              <button class="btn-mode" id="btn-mode-3dof" data-mode="3dof">
+                <span class="mode-title">3DOF 360° Cinema</span>
+                <span class="mode-desc">Pouze rotace hlavy ze statického sedadla (Dome Alpha)</span>
+              </button>
+
+              <button class="btn-mode" id="btn-mode-ambient" data-mode="ambient">
+                <span class="mode-title">Ambient Audio Pulsing</span>
+                <span class="mode-desc">Binaurální prostorový zvuk reagující na natočení (Oasis Hub)</span>
+              </button>
+            </div>
+
+            <div class="interactive-haptic-trigger">
+              <span class="haptic-title">Test haptického pulzu:</span>
+              <button class="btn btn-glass" id="btn-test-haptic">📳 Spustit haptický impuls</button>
+              <span class="haptic-feedback-msg" id="haptic-feedback-msg"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRACTICAL INFO & FAQ SECTION -->
+    <section class="section practical-section" id="practical-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">Vše co potřebujete vědět</div>
+          <h2 class="section-title">Praktické <span class="text-gradient">informace</span></h2>
+          <p class="section-subtitle">
+            Hygiena headsetů, doprava, bezpečnost a odpovědi na nejčastější dotazy.
+          </p>
+        </div>
+
+        <div class="practical-layout">
+          <div class="practical-info-cards">
+            <div class="p-card">
+              <div class="p-icon">📍</div>
+              <h3>Kde festival najdete</h3>
+              <p>Výstaviště Praha – Křižíkovy pavilony A, B, C a D. Tramvajová zastávka <strong>Výstaviště</strong> (linky 6, 12, 17) přímo před areálem.</p>
+            </div>
+
+            <div class="p-card">
+              <div class="p-icon">👓</div>
+              <h3>Dioptrické brýle & VR</h3>
+              <p>Všechny naše headsety (Vision Pro, Meta Quest 3, HTC Vive) jsou vybaveny distančními obroučkami – brýle nemusíte sundávat.</p>
+            </div>
+
+            <div class="p-card">
+              <div class="p-icon">🧼</div>
+              <h3>Hygienický protokol</h3>
+              <p>Používáme certifikované UV-C sterilizační boxy a pro každého návštěvníka máme připraveny hypoalergenní ochranné masky na obličej.</p>
+            </div>
+
+            <div class="p-card">
+              <div class="p-icon">🌀</div>
+              <h3>Prevence nevolnosti</h3>
+              <p>Projekce jsou optimalizovány na stabilních 90 FPS. V Oasis Hubu jsou k dispozici klidové zóny s mátovým čajem a zázvorovými kapkami.</p>
+            </div>
+          </div>
+
+          <!-- FAQ Accordion -->
+          <div class="faq-container">
+            <h3 class="faq-heading">Často kladené otázky (FAQ)</h3>
+
+            <details class="faq-item" open>
+              <summary class="faq-question">Od kolika let je festival vhodný pro děti?</summary>
+              <div class="faq-answer">
+                <p>Festival má vyhrazený dětský a rodinný program v dopoledních hodinách vhodný od 6 let (např. ručně malované Quill pohádky). Veškeré hororové a intenzivní 6DOF zážitky mají striktní označení 15+ a 18+.</p>
+              </div>
+            </details>
+
+            <details class="faq-item">
+              <summary class="faq-question">Jak funguje rezervace časového slotu na VR headset?</summary>
+              <div class="faq-answer">
+                <p>Každá platná vstupenka obsahuje přístup do rezervačního systému. V detailu konkrétního filmu na webu stačí kliknout na „Rezervovat slot“, vybrat čas a systém vám vygeneruje garantované místo bez čekání ve frontě.</p>
+              </div>
+            </details>
+
+            <details class="faq-item">
+              <summary class="faq-question">Je areál bezbariérový?</summary>
+              <div class="faq-answer">
+                <p>Ano, všechny 4 pavilony na Výstavišti jsou plně bezbariérové včetně výtahů. Většina 360° filmů v Dome Alpha a Oasis Hubu je přístupná přímo na invalidním vozíku.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-brand">
+        <span class="footer-logo">CHROMA<span class="text-gradient">SYNC</span> 2026</span>
+        <p>Mezinárodní festival virtuální reality a prostorové kinematografie v Praze.</p>
+        <span class="copyright">© 2026 CHROMASYNC. Všechna práva vyhrazena. Semestrální projekt Web Design (sem 5).</span>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Festival</h4>
+          <a href="#program-section">Program</a>
+          <a href="#creators-section">Tvůrci</a>
+          <a href="#stages-section">Scény</a>
+        </div>
+        <div class="footer-col">
+          <h4>Informace</h4>
+          <a href="#practical-section">Vstupenky & FAQ</a>
+          <a href="#practical-section">Hygiena & Bezpečnost</a>
+          <a href="#practical-section">Pro média</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- CONTEXTUAL DETAIL MODAL (<dialog>) -->
+  <dialog class="modal-dialog" id="item-detail-dialog" aria-labelledby="dialog-item-title">
+    <div class="dialog-card">
+      <button class="dialog-close-btn" id="btn-close-detail-dialog" aria-label="Zavřít detail">✕</button>
+      
+      <div class="dialog-header">
+        <div class="dialog-tags-row" id="dialog-item-tags"></div>
+        <h2 class="dialog-title" id="dialog-item-title">Název filmu</h2>
+        <div class="dialog-subtitle" id="dialog-item-original-title">Original Title</div>
+      </div>
+
+      <div class="dialog-body">
+        <div class="dialog-meta-grid">
+          <div class="dialog-meta-box">
+            <span class="meta-label">📅 Den & Čas</span>
+            <span class="meta-val" id="dialog-meta-time">Den 1 | 10:30 – 11:00</span>
+          </div>
+          <div class="dialog-meta-box">
+            <span class="meta-label">🏛️ Scéna</span>
+            <span class="meta-val" id="dialog-meta-stage">Dome Alpha</span>
+          </div>
+          <div class="dialog-meta-box">
+            <span class="meta-label">🥽 VR Hardware</span>
+            <span class="meta-val" id="dialog-meta-hardware">Meta Quest 3 Pro</span>
+          </div>
+          <div class="dialog-meta-box">
+            <span class="meta-label">👥 Interakce</span>
+            <span class="meta-val" id="dialog-meta-interaction">Seated 360°</span>
+          </div>
+        </div>
+
+        <div class="dialog-description">
+          <h3>Anotace projektu</h3>
+          <p id="dialog-item-description">Podrobný popis díla...</p>
+        </div>
+
+        <div class="dialog-creators-box">
+          <h3>Tvůrci & Režie</h3>
+          <div class="creators-chips-list" id="dialog-creators-list"></div>
+        </div>
+
+        <!-- Slot Reservation Section Inside Detail Dialog -->
+        <div class="dialog-reservation-box" id="dialog-reservation-box">
+          <div class="reservation-box-header">
+            <div>
+              <h3>Rezervace časového slotu na headset</h3>
+              <p>Garantované místo na headset bez čekání ve frontě.</p>
+            </div>
+            <span class="reservation-capacity-badge" id="dialog-capacity-badge">Zbývá 14 míst</span>
+          </div>
+
+          <form id="reservation-form" class="reservation-form">
+            <input type="hidden" id="reserve-item-id">
+            <div class="form-row">
+              <input type="text" id="reserve-user-name" placeholder="Vaše jméno a příjmení" required>
+              <input type="email" id="reserve-user-email" placeholder="Váš e-mail" required>
+            </div>
+            <button type="submit" class="btn btn-primary" id="btn-submit-reservation">Potvrdit rezervaci slotu</button>
+          </form>
+
+          <div class="reservation-success-msg hidden" id="reservation-success-msg">
+            <span class="check-icon">✅</span>
+            <div>
+              <strong>Slot úspěšně rezervován!</strong>
+              <p id="reservation-confirmation-details">Potvrzení s QR kódem bylo odesláno.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dialog-footer">
+        <button class="btn btn-schedule-toggle" id="btn-dialog-toggle-schedule">
+          <span class="icon">🔖</span> Přidat do mého rozvrhu
+        </button>
+        <button class="btn btn-glass" id="btn-dialog-close-bottom">Zavřít</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- CREATOR DETAIL MODAL (<dialog>) -->
+  <dialog class="modal-dialog" id="creator-detail-dialog" aria-labelledby="creator-dialog-name">
+    <div class="dialog-card">
+      <button class="dialog-close-btn" id="btn-close-creator-dialog" aria-label="Zavřít profil tvůrce">✕</button>
+      
+      <div class="creator-dialog-header">
+        <div class="creator-avatar-large" id="creator-dialog-avatar">👨‍💻</div>
+        <div>
+          <h2 class="dialog-title" id="creator-dialog-name">Jméno tvůrce</h2>
+          <div class="dialog-subtitle" id="creator-dialog-role">Režisér | Německo</div>
+          <div class="creator-tags-row" id="creator-dialog-tags"></div>
+        </div>
+      </div>
+
+      <div class="dialog-body">
+        <div class="dialog-description">
+          <h3>Biografie & Tvorba</h3>
+          <p id="creator-dialog-bio">Životopis tvůrce...</p>
+        </div>
+
+        <div class="creator-events-box">
+          <h3>Vystoupení na festivalu CHROMASYNC 2026</h3>
+          <div class="creator-events-list" id="creator-dialog-events-list"></div>
+        </div>
+      </div>
+
+      <div class="dialog-footer">
+        <button class="btn btn-glass" id="btn-creator-close-bottom">Zavřít</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- PERSONAL SCHEDULE DRAWER / MODAL (Můj program) -->
+  <aside class="schedule-drawer" id="schedule-drawer" aria-labelledby="drawer-heading" aria-hidden="true">
+    <div class="drawer-overlay" id="drawer-overlay"></div>
+    <div class="drawer-panel">
+      <div class="drawer-header">
+        <div>
+          <h2 class="drawer-heading" id="drawer-heading">🔖 Můj osobní program</h2>
+          <span class="drawer-sub" id="drawer-count-info">0 vybraných položek</span>
+        </div>
+        <button class="drawer-close-btn" id="btn-close-schedule-drawer" aria-label="Zavřít rozvrh">✕</button>
+      </div>
+
+      <!-- Collision Alert Box (Upozornění na časový překryv) -->
+      <div class="collision-alert-box hidden" id="collision-alert-box">
+        <span class="alert-icon">⚠️</span>
+        <div class="alert-text">
+          <strong>Detekován časový konflikt!</strong>
+          <p id="collision-alert-desc">Některé z vašich vybraných pořadů se časově překrývají.</p>
+        </div>
+      </div>
+
+      <div class="drawer-body" id="drawer-schedule-items-container">
+        <!-- Dynamically injected items -->
+      </div>
+
+      <div class="drawer-footer">
+        <button class="btn btn-glass btn-clear-all" id="btn-clear-my-schedule">Vyprázdnit rozvrh</button>
+        <button class="btn btn-primary" id="btn-export-schedule">Exportovat / Tisk</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container" aria-live="assertive"></div>
+
+  <!-- Main Application Script -->
+  <script src="app.js"></script>
+</body>
+</html>
