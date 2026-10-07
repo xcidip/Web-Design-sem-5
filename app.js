@@ -44,7 +44,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   initFovSimulator();
   initProgramSection();
   initCreatorsSection();
-  initStagesSection();
   initDialogs();
   initScheduleDrawer();
   initScenarioWalkthroughs();
@@ -662,26 +661,70 @@ function renderScheduleDrawer() {
 
 /* --- CONTEXTUAL DETAIL & SLOT RESERVATION MODAL --- */
 function initDialogs() {
-  document.getElementById('btn-close-detail-dialog').addEventListener('click', () => {
-    DOM.itemDetailDialog.close();
-  });
-  document.getElementById('btn-dialog-close-bottom').addEventListener('click', () => {
-    DOM.itemDetailDialog.close();
-  });
+  const closeItemModal = () => {
+    if (DOM.itemDetailDialog && typeof DOM.itemDetailDialog.close === 'function') {
+      DOM.itemDetailDialog.close();
+    }
+  };
 
-  document.getElementById('btn-close-creator-dialog').addEventListener('click', () => {
-    DOM.creatorDetailDialog.close();
-  });
-  document.getElementById('btn-creator-close-bottom').addEventListener('click', () => {
-    DOM.creatorDetailDialog.close();
-  });
+  const closeCreatorModal = () => {
+    if (DOM.creatorDetailDialog && typeof DOM.creatorDetailDialog.close === 'function') {
+      DOM.creatorDetailDialog.close();
+    }
+  };
+
+  const btnCloseDetail = document.getElementById('btn-close-detail-dialog');
+  if (btnCloseDetail) {
+    btnCloseDetail.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeItemModal();
+    });
+  }
+
+  const btnCloseBottom = document.getElementById('btn-dialog-close-bottom');
+  if (btnCloseBottom) {
+    btnCloseBottom.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeItemModal();
+    });
+  }
+
+  const btnCloseCreator = document.getElementById('btn-close-creator-dialog');
+  if (btnCloseCreator) {
+    btnCloseCreator.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeCreatorModal();
+    });
+  }
+
+  const btnCloseCreatorBottom = document.getElementById('btn-creator-close-bottom');
+  if (btnCloseCreatorBottom) {
+    btnCloseCreatorBottom.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeCreatorModal();
+    });
+  }
 
   // Close when clicking backdrop
-  DOM.itemDetailDialog.addEventListener('click', (e) => {
-    if (e.target === DOM.itemDetailDialog) DOM.itemDetailDialog.close();
-  });
-  DOM.creatorDetailDialog.addEventListener('click', (e) => {
-    if (e.target === DOM.creatorDetailDialog) DOM.creatorDetailDialog.close();
+  if (DOM.itemDetailDialog) {
+    DOM.itemDetailDialog.addEventListener('click', (e) => {
+      if (e.target === DOM.itemDetailDialog) closeItemModal();
+    });
+  }
+
+  if (DOM.creatorDetailDialog) {
+    DOM.creatorDetailDialog.addEventListener('click', (e) => {
+      if (e.target === DOM.creatorDetailDialog) closeCreatorModal();
+    });
+  }
+
+  // Escape key global fallback
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      if (DOM.itemDetailDialog && DOM.itemDetailDialog.open) closeItemModal();
+      if (DOM.creatorDetailDialog && DOM.creatorDetailDialog.open) closeCreatorModal();
+      if (DOM.scheduleDrawer && DOM.scheduleDrawer.classList.contains('open')) closeScheduleDrawer();
+    }
   });
 
   // Reservation form submit
