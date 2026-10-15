@@ -1506,9 +1506,10 @@
       "duration_minutes": 30,
       "stage_id": "stage-oasis-chill",
       "performer_ids": [
-        "perf-06"
+        "perf-06",
+        "perf-45"
       ],
-      "description": "Malebné ručně kreslené městečko z papíru, kde každá budova ukrývá malý animovaný mikropříběh probouzející se pohledem diváka.",
+      "description": "Malebné ručně kreslené městečko z papíru, kde každá budova ukrývá malý animovaný mikropříběh probouzející se pohledem diváka. Architektura virtuálního světa vznikla ve spolupráci dánského designéra Tobiase Møllera.",
       "vr_hardware": "Vision Pro Eye Tracking",
       "interaction_type": "Gaze-activated Storytelling",
       "capacity": 45,

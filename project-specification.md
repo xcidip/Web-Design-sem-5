@@ -157,25 +157,41 @@ Architektura je plně provázaná a eliminuje slepé uličky pro návštěvníka
 - Z **Detailu scény** je okamžitý přístup k časové ose všech pořadů, které se v dané zóně odehrávají.
 - Z **Detailu účinkujícího** jsou přímo linkována všechna vystoupení, filmy a diskuse, na kterých participuje.
 
+### 4.4 Popis účelu jednotlivých částí webu
+
+| Část webu | Účel a hlavní funkce |
+| :--- | :--- |
+| **1. Úvodní stránka (Home)** | Slouží jako vizuální a zážitková brána festivalu. Představuje identitu festivalu, klíčové headlinery, odpočet do zahájení, interaktivní 3D ukázku VR headsetu a okamžité navigační rozcestníky do programu a nákupu vstupenek. |
+| **2. Program (Harmonogram)** | Centrální funkční část webu. Umožňuje přehledné procházení všech 60 vystoupení rozdělených do 3 dnů s okamžitým filtrováním podle scén, technologií (6DOF, haptika, 360°), žánrů i fulltextového vyhledávání. |
+| **3. Účinkující – seznam a detail (Creators)** | Představuje 60 tvůrců, režisérů a VR studií. Seznam nabízí filtrování podle rolí a zemí. Detail tvůrce poskytuje biografii, ocenění a obousměrný přehled všech jeho festivalových vystoupení s proklikem do rozvrhu. |
+| **4. Místa a scény (Venues & Stages)** | Detailní průvodce 4 festivalovými zónami (Dome Alpha, Matrix Arena, Neon Stage, Oasis Hub) s popisem jejich hardwarového zázemí, kapacity, polohy v Křižíkových pavilonech a časového harmonogramu pro každou scénu. |
+| **5. Praktické informace (Practical Guide & FAQ)** | Poskytuje návštěvníkům veškeré organizační pokyny bez bariér: dopravní dostupnost (MHD, tramvaj), pokyny k hygieně headsetů a nošení dioptrických brýlí, prevenci kinetózy, bezbariérovost a interaktivní FAQ. |
+| **6. Interaktivní VR Showcase & 3D Lab** | Speciální zážitková sekce demonstrující specifika virtuální reality přímo v prohlížeči: 3D simulátor zorného pole (FOV), demonstrace 6DOF room-scale pohybu oproti 3DOF a binaurální spatial audio vzorky. |
+| **7. Můj program & Rezervace slotů** | Interaktivní klientská zóna umožňující návštěvníkům sestavit si personalizovaný rozvrh s automatickou detekcí časových kolizí překrývajících se vystoupení a provést rezervaci headsetu s vygenerováním kódu. |
+
 ---
 
 ## 5. Uživatelské scénáře
 
-Níže jsou definovány 3 klíčové scénáře pokrývající různé archetypy uživatelů, které slouží pro návrh drátěných modelů, interaktivní logiku a testování.
+Níže jsou definovány 3 klíčové scénáře pokrývající různé archetypy uživatelů, které slouží pro návrh informační architektury, drátěných modelů, interaktivní logiky v JavaScriptu a uživatelského testování.
 
 ### Scénář 1: Pokročilý hráč hledá interaktivní 6DOF zážitek s haptikou a rezervuje si slot
+> **Formulace situace:** Návštěvník (gamer) chce vyhledat nejintenzivnější 6DOF zážitek s haptickou vestou na sobotní odpoledne, rezervovat si volný časový slot na VR headset v Matrix Areně a uložit si vystoupení do svého programu.
+
 - **Typ uživatele:** Technologický nadšenec a VR gamer (Tomáš, 24 let).
 - **Cíl:** Najít na festivalu nejintenzivnější interaktivní zážitek s volným pohybem po místnosti a haptickou vestou na sobotní odpoledne, zjistit podrobnosti a uložit si jej do svého rozvrhu s rezervací časového slotu.
-- **Výchozí situace:** Tomáš přichází na web z mobilního telefonu přes odkaz na sociální síti, kde viděl zmínku o haptických vestách bHaptics.
+- **Výchozí situace:** Tomáš přichází na web z mobilního telefonu přes odkaz na sociální síti, kde viděl zmínku o haptických vestách bHaptics TactSuit.
 - **Průběh akce:**
   1. Otevírá web festivalu a v plovoucím menu kliká na **Program**.
   2. Vybírá záložku **Den 2 (Sobota 24. 10.)**.
   3. V rychlých filtrech kliká na štítek scény **Matrix Arena (6DOF)** a filtr hardwaru **Haptická vesta**.
   4. Systém okamžitě vyfiltruje položky; Tomáše zaujme projekt *Kybernetický únik: Úniková místnost s časovou smyčkou* (12:00 – 12:45).
   5. Otevírá detail, přečte si parametry hardware a kliká na tlačítko **„Přidat do mého programu“** a následně **„Rezervovat slot“**.
-- **Očekávaný výsledek:** Položka se uloží do Tomášova rozvrhu v liště, zobrazí se potvrzení o rezervaci slotu v Matrix Areně na 12:00 s QR kódem a systém jej upozorní, aby dorazil 10 minut předem na instruktáž.
+- **Očekávaný výsledek:** Položka se uloží do Tomášova rozvrhu v liště, zobrazí se potvrzení o rezervaci slotu v Matrix Areně na 12:00 s vygenerovaným rezervačním kódem a systém jej upozorní, aby dorazil 10 minut předem na kalibraci vesty.
 
 ### Scénář 2: Milovnice dokumentů a filmová studentka hledá programové bloky konkrétního režiséra
+> **Formulace situace:** Návštěvnice chce zjistit, kdy a kde vystupuje konkrétní španělský dokumentarista (Mateo Silva), ověřit si informace o jeho VR filmu a uložit si jeho projekce do svého rozvrhu s kontrolou časových návazností.
+
 - **Typ uživatele:** Filmová studentka FAMU / Cinefilka (Karolína, 22 let).
 - **Cíl:** Zjistit, kde a kdy vystupuje španělský dokumentarista Mateo Silva, přečíst si o jeho oceněném VR dokumentu o klimatických změnách a zkontrolovat, zda nekoliduje s masterclass o režii v prostoru.
 - **Výchozí situace:** Karolína sedí u notebooku a plánuje si páteční festivalový den zaměřený na autorskou tvorbu.
@@ -183,21 +199,23 @@ Níže jsou definovány 3 klíčové scénáře pokrývající různé archetypy
   1. Na webu v hlavní navigaci volí sekci **Tvůrci (Performers)**.
   2. Do vyhledávacího pole napíše „Mateo Silva“ nebo vyfiltruje štítek **Dokument**.
   3. Zobrazí se karta režiséra; kliknutím otevře detailní profil s biografií a filmografií.
-  4. V sekci „Vystoupení na CHROMASYNC 2026“ vidí dvě položky:
+  4. V sekci „Vystoupení na CHROMASYNC 2026“ vidí položky:
      - Pátek 11:15: *Hlasy tajícího ledu: Arktická expedice* (Dome Alpha)
      - Neděle 13:30: *Doteky války: Rekonstrukce měst po katastrofě* (Dome Alpha)
   5. Karolína kliká na „Přidat do mého rozvrhu“ u páteční projekce.
   6. Otevírá plovoucí okno **„Můj program“**, kde se vizuálně vykreslí časová osa pátečního dne.
-- **Očekávaný výsledek:** Karolína má film zařazen v rozvrhu, vidí, že po jeho skončení ve 11:55 pohodlně stíhá Masterclass v Pavilonu A ve 12:00 bez časové kolize.
+- **Očekávaný výsledek:** Karolína má film zařazen v rozvrhu, vidí, že po jeho skončení v 11:55 pohodlně stíhá Masterclass v Pavilonu A ve 12:00 bez časové kolize.
 
 ### Scénář 3: Rodič s dětmi hledá bezpečný rodinný program a zjišťuje praktická pravidla
+> **Formulace situace:** Rodič chce na neděli vyfiltrovat bezpečný program vhodný pro děti, ověřit v praktických informacích možnost nošení VR brýlí s dioptrickou korekcí a naplánovat rodinnou návštěvu.
+
 - **Typ uživatele:** Rodič (Martin, 41 let, s 10letou dcerou).
 - **Cíl:** Najít na neděli program vhodný pro děti bez násilí a hororových prvků, zjistit, zda dcera může nosit VR brýle s dioptrickými brýlemi a jak je to s lístky pro rodiny.
 - **Výchozí situace:** Martin přichází na hlavní stránku z vyhledávače Google po zadání „VR festival Praha pro děti“.
 - **Průběh akce:**
   1. Na domovské stránce kliká na doporučenou kategorii nebo přechází do **Programu**.
   2. Zvolí **Den 3 (Neděle 25. 10.)** a aktivuje filtr věku **„Děti & Rodina (Všechny věkové kategorie / 6+)“**.
-  3. Objeví titul *Rodinné nedělní dopoledne: Ptačí let nad Amazonií* (09:30, Dome Alpha) a *Kouzelná zahrada origami* (Oasis Hub).
+  3. Objeví nedělní tituly *Rodinné nedělní dopoledne: Ptačí let nad Amazonií* (09:30, Dome Alpha) a *Symbióza lesních hub: Cesta podhoubím* (10:00, Oasis Hub), popřípadě další rodinné projekce v programu.
   4. Následně v menu přechází do záložky **Praktické info**.
   5. V sekci FAQ kliká na rozbalovací otázku: *„Mohu mít ve VR brýlích dioptrické brýle?“* a *„Od kolika let je VR vhodná?“*.
   6. Dočítá se, že všechny festivalové headsety mají distanční vložky pro dioptrické obruby a personál pomáhá dětem s nastavením mezizornicové vzdálenosti (IPD).
@@ -233,27 +251,32 @@ Místo fádních základních barev web využívá hluboké kosmické pozadí s 
 
 ## 7. Datová základna a struktura databáze
 
-Datový podklad projektu je uložen v souboru [`data.json`](file:///Users/rafaelprokop/Documents/Projects/Web%20Design%20sem%205/data.json). Všechny vazby jsou normalizované, konzistentní a připravené pro přímou konzumaci v JavaScriptu.
+Datový podklad projektu je připraven ve dvou plně ekvivalentních a validovaných formátech podle zadání:
+- **JSON formát:** [`data.json`](file:///Users/rafaelprokop/Documents/Projects/Web%20Design%20sem%205/data.json) – optimalizovaný pro přímou konzumaci v moderním webovém prohlížeči a Vanilla JavaScriptu.
+- **XML formát:** [`data.xml`](file:///Users/rafaelprokop/Documents/Projects/Web%20Design%20sem%205/data.xml) – validní XML struktura ověřená nástrojem `xmllint` pro případné zpracování XML procesory či XSLT transformacemi.
+
+Všechny vazby jsou normalizované, referenčně integritní, konzistentní a jednoznačné.
 
 ### 7.1 Přehled entit a jejich rozsah
 
 | Entita | Počet záznamů | Primární klíč | Popis a vazby |
 | :--- | :---: | :--- | :--- |
-| **`festival`** | 1 | `id` (`chromasync-2026`) | Globální metadata, data konání, lokalita, motto, témata, statistiky. |
-| **`stages`** (scény/místa) | **4** | `id` (`stage-dome-alpha`, apod.) | Jednotlivé zóny s technickým vybavením, kapacitou a popisem. Vazba 1:N do `program_items`. |
-| **`performers`** (účinkující) | **60** | `id` (`perf-01` až `perf-60`) | Režiséři, vývojáři, VR studia a lektoři z celého světa. Vazba M:N do `program_items`. |
-| **`program_items`** (vystoupení) | **60** | `id` (`prog-01` až `prog-60`) | Filmové projekce, interaktivní 6DOF hry, workshopy a masterclasses rozdělené rovnoměrně do 3 dnů (20 na den). |
+| **`festival`** | 1 | `id` (`chromasync-2026`) | Globální metadata festivalu, data konání, přesná lokalita, motto, 6 hlavních žánrů a témat, kapacitní statistiky. |
+| **`stages`** (scény/místa) | **4** | `id` (`stage-dome-alpha`, apod.) | Jednotlivé zóny (Dome Alpha, Matrix Arena, Neon Stage, Oasis Hub) s technickým hardwarem, kapacitou a popisem. Vazba 1:N do `program_items`. |
+| **`performers`** (účinkující) | **60** | `id` (`perf-01` až `perf-60`) | Režiséři, 3D vývojáři, VR studia a lektoři z celého světa. Všech 60 tvůrců je aktivně zapojeno v programu (vazba M:N do `program_items`). |
+| **`program_items`** (vystoupení) | **60** | `id` (`prog-01` až `prog-60`) | Filmové projekce, interaktivní 6DOF hry, workshopy a masterclasses rozdělené rovnoměrně do 3 dnů (přesně 20 položek na každý den). |
 
 ### 7.2 Datové vazby a integrita
-- Každá programová položka obsahuje platný cizí klíč `stage_id` odkazující na jednu ze 4 scén.
-- Každá programová položka obsahuje pole cizích klíčů `performer_ids` odkazující na minimálně jednoho existujícího tvůrce (1 až 4 tvůrci na položku).
-- Časové sloty jsou rozprostřeny v rámci 3 dnů (23. 10. – 25. 10. 2026) od 09:30 do 23:00 bez kolizí na téže scéně.
+- **Jednoznačné vazby na scény:** Každá programová položka obsahuje platný cizí klíč `stage_id` odkazující na jednu ze 4 existujících scén.
+- **Jednoznačné vazby na účinkující:** Každá programová položka obsahuje pole cizích klíčů `performer_ids` odkazující na minimálně jednoho existujícího tvůrce (1 až 4 tvůrci na položku). Zároveň každý z 60 účinkujících vystupuje v minimálně jedné programové položce (0 sirotčích záznamů).
+- **Bezkonfliktní harmonogram:** Časové sloty jsou rozprostřeny v rámci 3 dnů (23. 10. – 25. 10. 2026) od 09:30 do 22:00 bez jakýchkoliv časových kolizí na téže scéně (verifikováno matematickým intervalovým testem).
+- **Konzistence délky trvání:** U všech 60 položek přesně odpovídá rozdíl časů `start_time` a `end_time` deklarované hodnotě `duration_minutes`.
 
 ---
 
 ## 8. Plán realizace v dalších fázích projektu
 
-1. **Fáze 1 (Aktuální výstup):** Projektová specifikace (`project-specification.md`) a datová základna (`data.json`).
+1. **Fáze 1 (Aktuální výstup – Cvičení 2):** Projektová specifikace ([`project-specification.md`](file:///Users/rafaelprokop/Documents/Projects/Web%20Design%20sem%205/project-specification.md)) a datová základna ([`data.json`](file:///Users/rafaelprokop/Documents/Projects/Web%20Design%20sem%205/data.json) / [`data.xml`](file:///Users/rafaelprokop/Documents/Projects/Web%20Design%20sem%205/data.xml)).
 2. **Fáze 2 (Informační struktura & Wireframing):** Příprava HTML šablony s responzivní strukturou a CSS design systémem tokenů.
 3. **Fáze 3 (Interaktivní vývoj & Komponenty):** Dynamické načítání `data.json`, implementace vyhledávání, filtrování, časové osy a funkce „Můj program“.
 4. **Fáze 4 (Vizuální WOW efekt & 3D / Mikroanimace):** Nasazení 3D prvků, mikrointerakcí, přístupnosti (a11y) a SEO optimalizace.
