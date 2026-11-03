@@ -74,24 +74,27 @@ Funkce přímo řeší potřeby person a cílových skupin definovaných v zadá
 
 ## 4. Použití AI a ověření AI výstupů
 
-AI (model Gemini) byla využita v režimu **řízeného párového programování** pro konkrétní dílčí úkoly. Veškeré výstupy byly technicky ověřeny a korigovány:
+Umělá inteligence byla využita jako asistent v roli řízeného párového programování pro urychlení rutinních úkonů, tvorbu výchozího kódu a návrhy řešení. Všechny generované výstupy podléhaly důkladné manuální revizi, testování hraničních případů a technickým úpravám:
 
-1. **Generování databáze (`data.json`):**
-   - *Úkol pro AI:* Vygenerovat strukturovaný dataset 60 programových bodů a 60 tvůrců.
-   - *Chyby AI:* Chybné reference cizích klíčů (např. odkaz na neexistující `perf-61`) a časové překryvy na téže scéně.
-   - *Ověření a oprava:* Vytvořen validační skript v Pythonu, který zkontroloval referenční integritu a unikátnost ID; nekonzistence byly ručně opraveny na 100 %.
+1. **Příprava datové sady (`projekt/data.json`):**
+   - *Využití AI:* Asistence při tvorbě strukturovaného datasetu pro 60 programových položek a profilů vystupujících.
+   - *Nedostatky AI:* AI v některých záznamech generovala neexistující cizí klíče (vazby mezi položkami programu a tvůrci) a docházelo k nechtěnému časovému překryvu představení na stejné scéně.
+   - *Ověření a náprava:* Data byla zvalidována na referenční integritu a unikátnost identifikátorů. Chybné vazby a časové kolize scén byly ručně opraveny a data byla přímo integrována i do aplikační logiky v `projekt/prototyp/app.js`.
 
-2. **Mobile-First CSS architektura:**
-   - *Chyby AI:* AI měla tendenci psát desktopové CSS a degradovat ho přes `max-width` media queries.
-   - *Ověření a oprava:* Kód byl přepracován na striktní Mobile-First s `min-width` dotazy, ergonomickou spodní lištou pro palec a dotykovými plochami min. 44×44 px.
+2. **Kódování stylů a Mobile-First architektura (`projekt/prototyp/style.css`):**
+   - *Využití AI:* Tvorba základních CSS skeletonů pro komponenty (karty programu, modální okna, navigační prvky).
+   - *Nedostatky AI:* Modely často preferují „desktop-first“ přístup s `max-width` pravidly a navrhují příliš malé klikací plochy nevhodné pro dotykové ovládání.
+   - *Ověření a náprava:* Styly byly refaktorovány do striktní Mobile-First architektury s `min-width` media queries, spodní navigační lištou dostupnou v zóně dosahu palce a dodržením minimální velikosti interaktivních cílů 44×44 px podle standardů přístupnosti (WCAG).
 
-3. **Algoritmus detekce kolizí v rozvrhu:**
-   - *Návrh AI:* Převod časů `"HH:MM"` na minuty od půlnoci a intervalový test $start_A < end_B \land start_B < end_A$.
-   - *Ověření:* Otestovány hraniční stavy (navazující akce bez kolize vs. překryv o 1 minutu vyvolávající varování).
+3. **Algoritmus detekce kolizí v rozvrhu (`projekt/prototyp/app.js`):**
+   - *Využití AI:* Návrh logiky pro detekci překryvů vybraných časových úseků.
+   - *Nedostatky AI:* Původní návrh řešil pouze textové porovnání řetězců, což selhávalo u různých formátů a časů přecházejících přes celé hodiny.
+   - *Ověření a náprava:* Implementován spolehlivý převod času na celočíselné minuty od začátku dne a intervalová kontrola ($start_A < end_B \land start_B < end_A$). Funkčnost byla ověřena testováním hraničních situací (představení končící přesně v čas začátku dalšího vs. překryv o 1 minutu).
 
-4. **Odladění dialogů `<dialog>` a offline běhu:**
-   - *Chyby AI:* Chybějící zavírání dialogu kliknutím na backdrop a reload stránky při odeslání rezervačního formuláře.
-   - *Ověření a oprava:* Doplněno `e.preventDefault()`, obsluha kliku na backdrop a offline fallback dat přímo v JS pro bezproblémové spuštění přes `file:///` bez nutnosti serveru.
+4. **Interakce dialogových oken a formulářů (`projekt/prototyp/index.html`, `projekt/prototyp/app.js`):**
+   - *Využití AI:* Vytvoření šablon pro sémantický prvek `<dialog>` a rezervační formulář.
+   - *Nedostatky AI:* Chybělo ošetření zavření modálního okna při kliknutí mimo obsah (na `::backdrop`), nebylo zajištěno zamezení výchozího odeslání stránky (`e.preventDefault()`) a chyběla perzistence stavu při obnovení stránky.
+   - *Ověření a náprava:* Doplněna správa fokusu, zachytávání klávesy `Escape`, správná obsluha událostí formuláře a ukládání stavu rezervací a oblíbených položek do `localStorage`.
 
 ---
 
