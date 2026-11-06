@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Praktické informace pro návštěvníky CHROMASYNC 2026: doprava na Výstaviště Praha, hygiena headsetů, brýle ve VR, prevence kinetózy, FAQ a kontakt.">
+  <title>Praktické informace & FAQ | CHROMASYNC 2026</title>
+
+  <!-- Google Fonts: Outfit, Plus Jakarta Sans, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme">
+  <!-- Skip to Main Content Link -->
+  <a href="#main-content" class="skip-link">Přejít k hlavnímu obsahu</a>
+
+  <!-- Ambient Canvas -->
+  <canvas id="ambient-canvas" class="ambient-canvas" aria-hidden="true"></canvas>
+
+  <!-- SITE HEADER -->
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="brand-logo" id="brand-logo" aria-label="CHROMASYNC 2026 - Domů">
+        <span class="logo-text">CHROMA<span class="text-gradient">SYNC</span></span>
+        <span class="logo-edition">2026</span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="desktop-nav" id="desktop-nav" aria-label="Hlavní navigace">
+        <a href="index.html" class="nav-link">
+          <span class="nav-icon">🏠</span> Domů
+        </a>
+        <a href="program.html" class="nav-link">
+          <span class="nav-icon">📅</span> Program
+        </a>
+        <a href="tvurci.html" class="nav-link">
+          <span class="nav-icon">👥</span> Tvůrci
+        </a>
+        <a href="index.html#stages-section" class="nav-link">
+          <span class="nav-icon">🏛️</span> Scény
+        </a>
+        <a href="index.html#showcase-section" class="nav-link">
+          <span class="nav-icon">🥽</span> 3D Lab
+        </a>
+        <a href="prakticke-info.html" class="nav-link active" aria-current="page">
+          <span class="nav-icon">ℹ️</span> Praktické
+        </a>
+      </nav>
+
+      <!-- Header Actions -->
+      <div class="header-actions" style="display: flex; align-items: center; gap: 0.75rem;">
+        <button class="btn-schedule-drawer-toggle" id="btn-open-schedule-drawer" aria-label="Otevřít můj osobní rozvrh">
+          <span class="icon">🔖</span>
+          <span class="label">Můj rozvrh</span>
+          <span class="badge" id="schedule-counter">0</span>
+        </button>
+        <a href="#tickets-pricing" class="btn btn-primary" style="padding: 0.45rem 0.9rem; font-size: 0.85rem;">
+          <span class="icon">🎟️</span> Vstupenky
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE BOTTOM NAVIGATION -->
+  <nav class="mobile-bottom-nav" id="mobile-bottom-nav" aria-label="Spodní navigace">
+    <a href="index.html" class="mobile-nav-item">
+      <span class="m-icon">🏠</span>
+      <span class="m-label">Domů</span>
+    </a>
+    <a href="program.html" class="mobile-nav-item">
+      <span class="m-icon">📅</span>
+      <span class="m-label">Program</span>
+    </a>
+    <a href="tvurci.html" class="mobile-nav-item">
+      <span class="m-icon">👥</span>
+      <span class="m-label">Tvůrci</span>
+    </a>
+    <a href="index.html#showcase-section" class="mobile-nav-item">
+      <span class="m-icon">🥽</span>
+      <span class="m-label">3D Lab</span>
+    </a>
+    <a href="prakticke-info.html" class="mobile-nav-item active" aria-current="page">
+      <span class="m-icon">ℹ️</span>
+      <span class="m-label">Info</span>
+    </a>
+    <a href="#schedule-drawer" class="mobile-nav-item" id="btn-open-schedule-drawer-mobile">
+      <span class="m-icon">🔖</span>
+      <span class="m-label">Rozvrh (<span id="schedule-counter-mobile">0</span>)</span>
+    </a>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main id="main-content" class="main-content">
+    <section class="section practical-section" id="practical-section" style="padding-top: 2rem;">
+      <div class="container">
+        <!-- Section Header -->
+        <div class="section-heading-block">
+          <span class="section-tag-label">Návštěvnický průvodce</span>
+          <h1 class="section-heading">Praktické <span class="text-gradient">informace & FAQ</span></h1>
+          <p class="section-lead">
+            Vše, co potřebujete vědět před vstupem do virtuálních světů: areál Výstaviště, doprava, hygiena, prevence nevolnosti a často kladené otázky.
+          </p>
+        </div>
+
+        <!-- Venue & Pavilions Map -->
+        <div class="venue-map-card">
+          <div style="display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
+            <h2 style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 800;">
+              📍 Areál Výstaviště Praha – Křižíkovy pavilony
+            </h2>
+            <span style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--neon-cyan);">
+              Výstaviště 67, 170 00 Praha 7 – Holešovice
+            </span>
+          </div>
+
+          <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem;">
+            Festival probíhá v nově zrekonstruovaných Křižíkových pavilonech na Výstavišti Praha. Všechny 4 pavilony jsou vzájemně propojeny krytým vytápěným koridorem a jsou 100% bezbariérové.
+          </p>
+
+          <div class="pavilions-grid">
+            <div class="pavilion-item">
+              <div class="pavilion-code">Pavilon B</div>
+              <div class="pavilion-name">Dome Alpha: Spatial HoloCinema</div>
+              <p class="pavilion-desc">Monumentální 8K projekční kopule a synchronizované bary s headsety Meta Quest 3 Pro a Dolby Atmos.</p>
+            </div>
+
+            <div class="pavilion-item">
+              <div class="pavilion-code">Pavilon C</div>
+              <div class="pavilion-name">Matrix Arena: 6DOF Interactive Lab</div>
+              <p class="pavilion-desc">Volný pohyb po místnosti s haptickými vestami bHaptics TactSuit X40 a sub-milimetrovým trackingem.</p>
+            </div>
+
+            <div class="pavilion-item">
+              <div class="pavilion-code">Pavilon A</div>
+              <div class="pavilion-name">Neon Stage: Creators & Masterclasses</div>
+              <p class="pavilion-desc">Konferenční velkosál s LED stěnou pro přednášky, live coding ve VR a panelové diskuse s tvůrci.</p>
+            </div>
+
+            <div class="pavilion-item">
+              <div class="pavilion-code">Pavilon D</div>
+              <div class="pavilion-name">Oasis Hub: Ambient & Sensory VR</div>
+              <p class="pavilion-desc">Relaxační zóna s lehkými headsety Apple Vision Pro a Bigscreen Beyond, sedacími vaky a aromaterapií.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 Key Practical Pillars Grid -->
+        <div class="practical-grid" style="margin-bottom: 3rem;">
+          <div class="info-card">
+            <span class="info-icon" aria-hidden="true">📍</span>
+            <h3>Doprava & Kde nás najdete</h3>
+            <p>Tramvajová zastávka <strong>Výstaviště</strong> (denní linky 6, 12, 17; noční 93, 94) je přímo u hlavní brány areálu. Ze stanice metra C <strong>Nádraží Holešovice</strong> je to 1 zastávka tramvají nebo 7 minut pěšky. K dispozici je placené parkoviště přímo v areálu Výstaviště.</p>
+          </div>
+
+          <div class="info-card">
+            <span class="info-icon" aria-hidden="true">👓</span>
+            <h3>Dioptrické brýle & VR</h3>
+            <p>Všechny festivalové headsety (Vision Pro, Meta Quest 3, HTC Vive Focus 3) jsou osazeny speciálními měkkými <strong>distančními vložkami</strong> pro dioptrické obruby. Brýle si před nasazením nemusíte sundávat.</p>
+          </div>
+
+          <div class="info-card">
+            <span class="info-icon" aria-hidden="true">🧼</span>
+            <h3>Hygiena & UV-C sterilizace</h3>
+            <p>Bezpečnost a hygiena jsou naší prioritou. Každý headset prochází po projekci <strong>lékařským UV-C sterilizačním boxem Cleanbox</strong>. Každý návštěvník obdrží u vstupu antibakteriální jednorázovou obličejovou masku.</p>
+          </div>
+
+          <div class="info-card">
+            <span class="info-icon" aria-hidden="true">🌀</span>
+            <h3>Prevence nevolnosti (Kinetóza)</h3>
+            <p>Veškerá díla jsou kurátorsky ověřena na stabilitu framerate (min. 90 FPS) s nulovým zpožděním trackingu. Pokud jste citliví na pohyb, doporučujeme sedavé zážitky v Dome Alpha nebo relaxaci v Oasis Hubu s mátovým čajem a asistencí personálu.</p>
+          </div>
+        </div>
+
+        <!-- Tickets / Pricing Anchored Section -->
+        <div class="section-heading-block" id="tickets-pricing" style="margin-top: 3.5rem;">
+          <span class="section-tag-label">Vstupenky na festival</span>
+          <h2 class="section-heading">Ceník <span class="text-gradient">festivalových pasů</span></h2>
+          <p class="section-lead">
+            Všechny pasy zahrnují neomezený vstup na projekce v Dome Alpha i Neon Stage a možnost bezplatné rezervace slotů na 6DOF headsety.
+          </p>
+        </div>
+
+        <div class="tickets-grid" style="margin-bottom: 3.5rem;">
+          <article class="ticket-card">
+            <h3 class="ticket-title">1-Denní Pas</h3>
+            <div class="ticket-price">990 Kč <span class="ticket-price-sub">/ den</span></div>
+            <ul class="ticket-features-list">
+              <li><span>✓</span> Přístup do všech 4 scén v vybraný den</li>
+              <li><span>✓</span> Možnost rezervace až 3 slotů na headset</li>
+              <li><span>✓</span> Vstup do relax zóny Oasis Hub</li>
+              <li><span>✓</span> Ochranná jednorázová maska zdarma</li>
+            </ul>
+            <a href="program.html" class="btn btn-glass">Vybrat den v programu</a>
+          </article>
+
+          <article class="ticket-card featured">
+            <span class="ticket-popular-badge">Nejoblíbenější</span>
+            <h3 class="ticket-title">3-Denní All-Access</h3>
+            <div class="ticket-price">2 490 Kč <span class="ticket-price-sub">/ víkend</span></div>
+            <ul class="ticket-features-list">
+              <li><span>✓</span> Neomezený vstup na všechny 3 dny (Pá–Ne)</li>
+              <li><span>✓</span> Přednostní rezervace neomezeného počtu slotů</li>
+              <li><span>✓</span> Vstup na slavnostní zakončení a předávání cen</li>
+              <li><span>✓</span> Oficiální festivalový uvítací balíček</li>
+            </ul>
+            <a href="program.html" class="btn btn-primary btn-glow">Rezervovat All-Access</a>
+          </article>
+
+          <article class="ticket-card">
+            <h3 class="ticket-title">VIP Industry Pass</h3>
+            <div class="ticket-price">4 990 Kč <span class="ticket-price-sub">/ all-inclusive</span></div>
+            <ul class="ticket-features-list">
+              <li><span>✓</span> Veškeré Masterclasses, Q&A panely a workshopy</li>
+              <li><span>✓</span> Přístup do Industry Lounge a networkingových večerů</li>
+              <li><span>✓</span> Osobní concierge pro testování prototypů</li>
+              <li><span>✓</span> Oficiální festivalový katalog s kontakty</li>
+            </ul>
+            <a href="#contact-section" class="btn btn-glass">Požádat o akreditaci</a>
+          </article>
+        </div>
+
+        <!-- FAQ Accordion -->
+        <div class="faq-accordion-box" style="margin-bottom: 3.5rem;">
+          <h2 class="faq-title" style="font-family: var(--font-display); font-size: 1.6rem; font-weight: 800; margin-bottom: 1.5rem; text-align: center;">
+            Často kladené dotazy (FAQ)
+          </h2>
+
+          <details class="faq-item" open>
+            <summary class="faq-q">Od kolika let je festival vhodný pro děti?</summary>
+            <div class="faq-a">
+              <p>Festival nabízí dedikovaný dopolední rodinný program vhodný pro děti od 6 let (např. ručně malované Quill pohádky a relaxační podmořské světy). Intenzivní 6DOF sci-fi tituly a horory v Matrix Areně mají přísné věkové omezení 15+ a 18+. Každá karta v programu uvádí doporučený věk.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-q">Jak funguje rezervace časového slotu na headset?</summary>
+            <div class="faq-a">
+              <p>V programu stačí otevřít detail konkrétního díla a v rezervačním boxu zadat jméno a e-mail. Systém vám vygeneruje garantovaný časový slot bez nutnosti stát ve frontě. Vstupenka vám rezervuje konkrétní headset na daný čas.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-q">Je areál bezbariérově přístupný?</summary>
+            <div class="faq-a">
+              <p>Ano, všechny 4 pavilony na Výstavišti jsou plně bezbariérové včetně bezbariérových toalet, ramp a asistenční služby. Projekce v Dome Alpha i Oasis Hubu lze absolvovat přímo na invalidním vozíku.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-q">Co dělat, pokud se mi udělá ve VR nevolno (motion sickness)?</summary>
+            <div class="faq-a">
+              <p>Pokud pocítíte nepohodlí, headset kdykoliv jednoduše sundejte. Náš personál na každé scéně je proškolen v první pomoci při kinetóze. V Pavilonu D (Oasis Hub) je připravena klidová zóna s čerstvým vzduchem, chlazenou vodou a zázvorovo-mátovým čajem.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-q">Lze vstupenky zakoupit i na místě v den festivalu?</summary>
+            <div class="faq-a">
+              <p>Ano, pokladny u vstupu do Pavilonu B budou otevřeny denně od 08:30 do 20:00. Nicméně doporučujeme zakoupit vstupenku online předem, protože časové sloty na nejžádanější 6DOF zážitky s haptickými vestami bHaptics bývají vyprodány.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-q">Mám vlastní VR headset. Bude k dispozici i online stream?</summary>
+            <div class="faq-a">
+              <p>Přednášky a masterclasses z Neon Stage budeme živě přenášet ve formátu 360° stereoskopického streamu pro držitele akreditací. Samotné interaktivní 6DOF instalace a haptické zážitky jsou však z technologické povahy dostupné pouze fyzicky v areálu Výstaviště.</p>
+            </div>
+          </details>
+        </div>
+
+        <!-- Contact Form Section -->
+        <div class="contact-card" id="contact-section">
+          <div style="text-align: center;">
+            <span class="section-tag-label">Napište nám</span>
+            <h2 style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem;">
+              Máte dotaz nebo zájem o novinářskou akreditaci?
+            </h2>
+            <p style="font-size: 0.88rem; color: var(--text-secondary);">
+              Náš festivalový tým vám odpoví nejpozději do 24 hodin.
+            </p>
+          </div>
+
+          <form id="festival-contact-form" class="contact-form">
+            <div class="form-group">
+              <label for="contact-name">Jméno a příjmení *</label>
+              <input type="text" id="contact-name" placeholder="Jan Novák" required>
+            </div>
+
+            <div class="form-group">
+              <label for="contact-email">E-mailová adresa *</label>
+              <input type="email" id="contact-email" placeholder="jan.novak@example.cz" required>
+            </div>
+
+            <div class="form-group">
+              <label for="contact-subject">Téma dotazu</label>
+              <select id="contact-subject">
+                <option value="Vstupenky a rezervace">Vstupenky a rezervace slotů</option>
+                <option value="Novinářská akreditace">Novinářská / Industry akreditace</option>
+                <option value="Bezbariérovost a asistence">Bezbariérovost a asistence na místě</option>
+                <option value="Partnerská spolupráce">Partnerská spolupráce</option>
+                <option value="Jiný dotaz">Jiný dotaz</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="contact-message">Zpráva *</label>
+              <textarea id="contact-message" placeholder="Napište nám svůj dotaz nebo specifikaci požadavku..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-glow" style="margin-top: 0.5rem; min-height: 48px;">
+              Odeslat zprávu festivalovému týmu
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- SITE FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-info">
+        <span class="footer-logo">CHROMA<span class="text-gradient">SYNC</span> 2026</span>
+        <p>Praktický průvodce návštěvníka festivalu virtuální reality CHROMASYNC 2026.</p>
+        <span class="footer-copy">© 2026 CHROMASYNC VR Film Festival. Výstaviště Praha. Běží 100% offline.</span>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Domů</a>
+        <a href="program.html">Program</a>
+        <a href="tvurci.html">Tvůrci</a>
+        <a href="index.html#stages-section">Scény</a>
+        <a href="prakticke-info.html">Praktické info</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- CONTEXTUAL PROGRAM DETAIL MODAL (<dialog>) -->
+  <dialog class="modal-dialog" id="item-detail-dialog" aria-labelledby="dialog-item-title">
+    <div class="dialog-box">
+      <button type="button" class="dialog-close-btn" id="btn-close-detail-dialog" aria-label="Zavřít detail">✕</button>
+
+      <div class="dialog-head">
+        <div class="dialog-tags" id="dialog-item-tags"></div>
+        <h2 class="dialog-title" id="dialog-item-title">Název filmu</h2>
+        <div class="dialog-orig-title" id="dialog-item-original-title">Original Title</div>
+      </div>
+
+      <div class="dialog-content">
+        <div class="dialog-specs-grid">
+          <div class="spec-cell">
+            <span class="cell-label">📅 Den & Čas</span>
+            <span class="cell-val" id="dialog-meta-time">Den 1 | 10:30 – 11:00</span>
+          </div>
+          <div class="spec-cell">
+            <span class="cell-label">🏛️ Scéna</span>
+            <span class="cell-val" id="dialog-meta-stage">Dome Alpha</span>
+          </div>
+          <div class="spec-cell">
+            <span class="cell-label">🥽 VR Hardware</span>
+            <span class="cell-val" id="dialog-meta-hardware">Meta Quest 3 Pro</span>
+          </div>
+          <div class="spec-cell">
+            <span class="cell-label">👥 Interakce</span>
+            <span class="cell-val" id="dialog-meta-interaction">Seated 360°</span>
+          </div>
+        </div>
+
+        <div class="dialog-desc-section">
+          <h3>Anotace projektu</h3>
+          <p id="dialog-item-description">Podrobný popis díla...</p>
+        </div>
+
+        <div class="dialog-creators-section">
+          <h3>Zapojení tvůrci & režie</h3>
+          <div class="creators-chips-row" id="dialog-creators-list"></div>
+        </div>
+
+        <div class="dialog-booking-section" id="dialog-reservation-box">
+          <div class="booking-header">
+            <div>
+              <h3>Rezervace časového slotu na headset</h3>
+              <p>Garantované místo na headset v daném čase bez čekání ve frontě.</p>
+            </div>
+            <span class="booking-status-badge" id="dialog-capacity-badge">Zbývá 14 míst</span>
+          </div>
+
+          <form id="reservation-form" class="booking-form">
+            <input type="hidden" id="reserve-item-id">
+            <div class="form-inputs-row">
+              <input type="text" id="reserve-user-name" placeholder="Vaše jméno a příjmení" required>
+              <input type="email" id="reserve-user-email" placeholder="Váš e-mail" required>
+            </div>
+            <button type="submit" class="btn btn-primary" id="btn-submit-reservation">Potvrdit rezervaci slotu</button>
+          </form>
+
+          <div class="booking-success-msg hidden" id="reservation-success-msg">
+            <span class="success-icon">✅</span>
+            <div>
+              <strong>Slot byl úspěšně rezervován!</strong>
+              <p id="reservation-confirmation-details">Potvrzení s rezervačním kódem uloženo.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dialog-foot">
+        <button type="button" class="btn btn-schedule-action" id="btn-dialog-toggle-schedule">
+          <span class="icon">🔖</span> Přidat do mého rozvrhu
+        </button>
+        <button type="button" class="btn btn-glass" id="btn-dialog-close-bottom">Zavřít</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- CREATOR DETAIL MODAL (<dialog>) -->
+  <dialog class="modal-dialog" id="creator-detail-dialog" aria-labelledby="creator-dialog-name">
+    <div class="dialog-box">
+      <button type="button" class="dialog-close-btn" id="btn-close-creator-dialog" aria-label="Zavřít profil tvůrce">✕</button>
+
+      <div class="creator-dialog-head">
+        <div class="creator-avatar-bubble" id="creator-dialog-avatar">👤</div>
+        <div>
+          <h2 class="dialog-title" id="creator-dialog-name">Jméno tvůrce</h2>
+          <div class="creator-dialog-meta" id="creator-dialog-role">Režisér | Německo</div>
+          <div class="creator-tags-row" id="creator-dialog-tags"></div>
+        </div>
+      </div>
+
+      <div class="dialog-content">
+        <div class="dialog-desc-section">
+          <h3>Biografie & Tvůrčí zázemí</h3>
+          <p id="creator-dialog-bio">Životopis tvůrce...</p>
+        </div>
+
+        <div class="creator-events-section">
+          <h3>Vystoupení tvůrce na festivalu CHROMASYNC 2026</h3>
+          <div class="creator-events-list" id="creator-dialog-events-list"></div>
+        </div>
+      </div>
+
+      <div class="dialog-foot">
+        <button type="button" class="btn btn-glass" id="btn-creator-close-bottom">Zavřít</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- PERSONAL SCHEDULE DRAWER -->
+  <aside class="schedule-drawer" id="schedule-drawer" aria-labelledby="drawer-heading" aria-hidden="true">
+    <div class="drawer-backdrop" id="drawer-overlay"></div>
+    <div class="drawer-content-pane">
+      <div class="drawer-header-row">
+        <div>
+          <h2 class="drawer-title" id="drawer-heading">🔖 Můj osobní program</h2>
+          <span class="drawer-counter-txt" id="drawer-count-info">0 vybraných položek</span>
+        </div>
+        <button type="button" class="drawer-close-btn" id="btn-close-schedule-drawer" aria-label="Zavřít rozvrh">✕</button>
+      </div>
+
+      <!-- Real-time Collision Alert Box -->
+      <div class="collision-box hidden" id="collision-alert-box">
+        <span class="col-icon">⚠️</span>
+        <div class="col-body">
+          <strong>Detekován časový konflikt!</strong>
+          <p id="collision-alert-desc">Vybraná vystoupení se v daný den překrývají.</p>
+        </div>
+      </div>
+
+      <div class="drawer-items-list" id="drawer-schedule-items-container">
+        <!-- Dynamically injected items -->
+      </div>
+
+      <div class="drawer-foot-actions">
+        <button class="btn btn-glass" id="btn-clear-my-schedule">Vyprázdnit rozvrh</button>
+        <button class="btn btn-primary" id="btn-export-schedule">Exportovat / Tisk</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Floating Toast Notifications -->
+  <div class="toast-stack" id="toast-container" aria-live="assertive"></div>
+
+  <!-- Standalone Application Logic -->
+  <script src="app.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kompletní harmonogram festivalu CHROMASYNC 2026. 60 VR děl, 4 scény, filtrování podle technologií (6DOF, haptika, 360°) a osobní rozvrh s detekcí kolizí.">
+  <title>Program a harmonogram | CHROMASYNC 2026</title>
+
+  <!-- Google Fonts: Outfit, Plus Jakarta Sans, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme">
+  <!-- Skip to Main Content Link -->
+  <a href="#main-content" class="skip-link">Přejít k hlavnímu obsahu</a>
+
+  <!-- Ambient Canvas -->
+  <canvas id="ambient-canvas" class="ambient-canvas" aria-hidden="true"></canvas>
+
+  <!-- SITE HEADER -->
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="brand-logo" id="brand-logo" aria-label="CHROMASYNC 2026 - Domů">
+        <span class="logo-text">CHROMA<span class="text-gradient">SYNC</span></span>
+        <span class="logo-edition">2026</span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="desktop-nav" id="desktop-nav" aria-label="Hlavní navigace">
+        <a href="index.html" class="nav-link">
+          <span class="nav-icon">🏠</span> Domů
+        </a>
+        <a href="program.html" class="nav-link active" aria-current="page">
+          <span class="nav-icon">📅</span> Program
+        </a>
+        <a href="tvurci.html" class="nav-link">
+          <span class="nav-icon">👥</span> Tvůrci
+        </a>
+        <a href="index.html#stages-section" class="nav-link">
+          <span class="nav-icon">🏛️</span> Scény
+        </a>
+        <a href="index.html#showcase-section" class="nav-link">
+          <span class="nav-icon">🥽</span> 3D Lab
+        </a>
+        <a href="prakticke-info.html" class="nav-link">
+          <span class="nav-icon">ℹ️</span> Praktické
+        </a>
+      </nav>
+
+      <!-- Header Actions -->
+      <div class="header-actions" style="display: flex; align-items: center; gap: 0.75rem;">
+        <button class="btn-schedule-drawer-toggle" id="btn-open-schedule-drawer" aria-label="Otevřít můj osobní rozvrh">
+          <span class="icon">🔖</span>
+          <span class="label">Můj rozvrh</span>
+          <span class="badge" id="schedule-counter">0</span>
+        </button>
+        <a href="prakticke-info.html#tickets-pricing" class="btn btn-primary" style="padding: 0.45rem 0.9rem; font-size: 0.85rem;">
+          <span class="icon">🎟️</span> Vstupenky
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE BOTTOM NAVIGATION -->
+  <nav class="mobile-bottom-nav" id="mobile-bottom-nav" aria-label="Spodní navigace">
+    <a href="index.html" class="mobile-nav-item">
+      <span class="m-icon">🏠</span>
+      <span class="m-label">Domů</span>
+    </a>
+    <a href="program.html" class="mobile-nav-item active" aria-current="page">
+      <span class="m-icon">📅</span>
+      <span class="m-label">Program</span>
+    </a>
+    <a href="tvurci.html" class="mobile-nav-item">
+      <span class="m-icon">👥</span>
+      <span class="m-label">Tvůrci</span>
+    </a>
+    <a href="index.html#showcase-section" class="mobile-nav-item">
+      <span class="m-icon">🥽</span>
+      <span class="m-label">3D Lab</span>
+    </a>
+    <a href="prakticke-info.html" class="mobile-nav-item">
+      <span class="m-icon">ℹ️</span>
+      <span class="m-label">Info</span>
+    </a>
+    <a href="#schedule-drawer" class="mobile-nav-item" id="btn-open-schedule-drawer-mobile">
+      <span class="m-icon">🔖</span>
+      <span class="m-label">Rozvrh (<span id="schedule-counter-mobile">0</span>)</span>
+    </a>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main id="main-content" class="main-content">
+    <section class="section program-section" id="program-section" style="padding-top: 2rem;">
+      <div class="container">
+        <!-- Section Header -->
+        <div class="section-heading-block">
+          <span class="section-tag-label">Harmonogram & Filtrování</span>
+          <h1 class="section-heading">Festivalový <span class="text-gradient">program 2026</span></h1>
+          <p class="section-lead">
+            60 programových děl ve 4 scénách během 3 festivalových dnů. Využijte filtry podle dnů, scén či technologií, přepínejte mezi mřížkou a časovou osou a sestavte si svůj osobní harmonogram bez časových kolizí.
+          </p>
+        </div>
+
+        <!-- PROGRAM TOOLBAR -->
+        <div class="program-toolbar">
+          <!-- Day Selector Tabs -->
+          <div class="day-tabs-row" role="tablist" aria-label="Výběr festivalového dne">
+            <button class="day-tab active" data-day="all" role="tab" aria-selected="true">
+              <span class="tab-code">Vše</span>
+              <span class="tab-title">Celý festival (60)</span>
+            </button>
+            <button class="day-tab" data-day="1" role="tab" aria-selected="false">
+              <span class="tab-code">PÁ 23.10.</span>
+              <span class="tab-title">Den 1: Zahájení & Vize</span>
+            </button>
+            <button class="day-tab" data-day="2" role="tab" aria-selected="false">
+              <span class="tab-code">SO 24.10.</span>
+              <span class="tab-title">Den 2: Velká sobota</span>
+            </button>
+            <button class="day-tab" data-day="3" role="tab" aria-selected="false">
+              <span class="tab-code">NE 25.10.</span>
+              <span class="tab-title">Den 3: Finále & Ceny</span>
+            </button>
+          </div>
+
+          <!-- Filter Controls Row -->
+          <div class="filter-controls-row">
+            <!-- Live Search Input -->
+            <div class="search-box-wrapper">
+              <span class="search-ico" aria-hidden="true">🔍</span>
+              <input type="search" id="program-search-input" placeholder="Hledat film, tvůrce, téma (např. 'Haptika', 'Kybernetický', 'Dokument')..." aria-label="Vyhledávání v programu">
+              <button class="btn-clear-search" id="btn-clear-search" aria-label="Vymazat text vyhledávání">✕</button>
+            </div>
+
+            <!-- Stage Filter -->
+            <div class="filter-select-wrapper">
+              <label for="filter-stage-select" class="sr-only">Scéna</label>
+              <select id="filter-stage-select" aria-label="Filtrovat podle scény">
+                <option value="all">Všechny scény (4)</option>
+                <option value="stage-dome-alpha">Dome Alpha (Spatial HoloCinema)</option>
+                <option value="stage-matrix-6dof">Matrix Arena (6DOF & Haptika)</option>
+                <option value="stage-neon-creators">Neon Stage (Creators & Masterclasses)</option>
+                <option value="stage-oasis-chill">Oasis Hub (Ambient & Sensory)</option>
+              </select>
+            </div>
+
+            <!-- Technology Filter -->
+            <div class="filter-select-wrapper">
+              <label for="filter-tech-select" class="sr-only">Technologie / Formát</label>
+              <select id="filter-tech-select" aria-label="Filtrovat podle technologie">
+                <option value="all">Všechny technologie / formáty</option>
+                <option value="6dof">6DOF Volný pohyb v prostoru</option>
+                <option value="haptic">Haptická vesta & dotek</option>
+                <option value="360">360° 3D Stereoskopický film</option>
+                <option value="visionpro">Apple Vision Pro / Hand-tracking</option>
+                <option value="talk">Přednáška & Masterclass</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Fast Quick-Pills & View Mode Switcher -->
+          <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 0.5rem;">
+            <div class="quick-pills-bar" id="quick-pills-bar" style="margin-bottom: 0;">
+              <span class="pills-title">Rychlé filtry:</span>
+              <button class="quick-pill" data-pill="haptic">🦺 Haptika</button>
+              <button class="quick-pill" data-pill="6dof">🕹️ 6DOF</button>
+              <button class="quick-pill" data-pill="sci-fi">🚀 Sci-Fi</button>
+              <button class="quick-pill" data-pill="kids">👶 Rodina & Děti</button>
+              <button class="quick-pill" data-pill="cz">🇨🇿 Česká tvorba</button>
+            </div>
+
+            <!-- View Mode Switcher -->
+            <div class="view-mode-toggle" role="radiogroup" aria-label="Režim zobrazení programu">
+              <button type="button" class="btn-view-toggle active" id="btn-view-grid" aria-label="Zobrazit jako mřížku karet">
+                <span>🗂️ Mřížka</span>
+              </button>
+              <button type="button" class="btn-view-toggle" id="btn-view-timeline" aria-label="Zobrazit jako časovou osu podle hodin">
+                <span>⏱️ Časová osa</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Status Bar -->
+          <div class="filter-status-row" style="margin-top: 1rem;">
+            <span class="results-counter" id="results-count-text" aria-live="polite">Zobrazeno 60 programových položek</span>
+            <button class="btn-reset-filters-text" id="btn-reset-filters">Obnovit všechny filtry</button>
+          </div>
+        </div>
+
+        <!-- Program Items Grid (Mřížka karet) -->
+        <div class="program-grid" id="program-items-grid" aria-live="polite">
+          <!-- Dynamically populated via app.js -->
+        </div>
+
+        <!-- Program Timeline View (Časová osa) -->
+        <div class="timeline-view hidden" id="program-timeline-view" aria-live="polite">
+          <!-- Dynamically populated via app.js -->
+        </div>
+
+        <!-- Empty State -->
+        <div class="empty-state-card hidden" id="program-empty-state">
+          <div class="empty-icon">🛰️</div>
+          <h3>Žádná vystoupení neodpovídají zadaným filtrům</h3>
+          <p>Zkuste upravit hledaný výraz nebo resetovat výběr scény a technologie.</p>
+          <button class="btn btn-glass" id="btn-empty-reset">Zobrazit kompletní program</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- SITE FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-info">
+        <span class="footer-logo">CHROMA<span class="text-gradient">SYNC</span> 2026</span>
+        <p>Festivalový harmonogram a rezervace slotů pro 4. ročník festivalu CHROMASYNC.</p>
+        <span class="footer-copy">© 2026 CHROMASYNC VR Film Festival. Běží 100% offline bez závislostí.</span>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Domů</a>
+        <a href="program.html">Program</a>
+        <a href="tvurci.html">Tvůrci</a>
+        <a href="index.html#stages-section">Scény</a>
+        <a href="prakticke-info.html">Praktické info</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- CONTEXTUAL PROGRAM DETAIL MODAL (<dialog>) -->
+  <dialog class="modal-dialog" id="item-detail-dialog" aria-labelledby="dialog-item-title">
+    <div class="dialog-box">
+      <button type="button" class="dialog-close-btn" id="btn-close-detail-dialog" aria-label="Zavřít detail">✕</button>
+
+      <div class="dialog-head">
+        <div class="dialog-tags" id="dialog-item-tags"></div>
+        <h2 class="dialog-title" id="dialog-item-title">Název filmu</h2>
+        <div class="dialog-orig-title" id="dialog-item-original-title">Original Title</div>
+      </div>
+
+      <div class="dialog-content">
+        <div class="dialog-specs-grid">
+          <div class="spec-cell">
+            <span class="cell-label">📅 Den & Čas</span>
+            <span class="cell-val" id="dialog-meta-time">Den 1 | 10:30 – 11:00</span>
+          </div>
+          <div class="spec-cell">
+            <span class="cell-label">🏛️ Scéna</span>
+            <span class="cell-val" id="dialog-meta-stage">Dome Alpha</span>
+          </div>
+          <div class="spec-cell">
+            <span class="cell-label">🥽 VR Hardware</span>
+            <span class="cell-val" id="dialog-meta-hardware">Meta Quest 3 Pro</span>
+          </div>
+          <div class="spec-cell">
+            <span class="cell-label">👥 Interakce</span>
+            <span class="cell-val" id="dialog-meta-interaction">Seated 360°</span>
+          </div>
+        </div>
+
+        <div class="dialog-desc-section">
+          <h3>Anotace projektu</h3>
+          <p id="dialog-item-description">Podrobný popis díla...</p>
+        </div>
+
+        <div class="dialog-creators-section">
+          <h3>Zapojení tvůrci & režie</h3>
+          <div class="creators-chips-row" id="dialog-creators-list"></div>
+        </div>
+
+        <!-- VR Slot Booking Section (INTERAKTIVNÍ FUNKCE 3) -->
+        <div class="dialog-booking-section" id="dialog-reservation-box">
+          <div class="booking-header">
+            <div>
+              <h3>Rezervace časového slotu na headset</h3>
+              <p>Garantované místo na headset v daném čase bez čekání ve frontě.</p>
+            </div>
+            <span class="booking-status-badge" id="dialog-capacity-badge">Zbývá 14 míst</span>
+          </div>
+
+          <form id="reservation-form" class="booking-form">
+            <input type="hidden" id="reserve-item-id">
+            <div class="form-inputs-row">
+              <input type="text" id="reserve-user-name" placeholder="Vaše jméno a příjmení" required>
+              <input type="email" id="reserve-user-email" placeholder="Váš e-mail" required>
+            </div>
+            <button type="submit" class="btn btn-primary" id="btn-submit-reservation">Potvrdit rezervaci slotu</button>
+          </form>
+
+          <div class="booking-success-msg hidden" id="reservation-success-msg">
+            <span class="success-icon">✅</span>
+            <div>
+              <strong>Slot byl úspěšně rezervován!</strong>
+              <p id="reservation-confirmation-details">Potvrzení s rezervačním kódem uloženo.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dialog-foot">
+        <button type="button" class="btn btn-schedule-action" id="btn-dialog-toggle-schedule">
+          <span class="icon">🔖</span> Přidat do mého rozvrhu
+        </button>
+        <button type="button" class="btn btn-glass" id="btn-dialog-close-bottom">Zavřít</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- CREATOR DETAIL MODAL (<dialog>) -->
+  <dialog class="modal-dialog" id="creator-detail-dialog" aria-labelledby="creator-dialog-name">
+    <div class="dialog-box">
+      <button type="button" class="dialog-close-btn" id="btn-close-creator-dialog" aria-label="Zavřít profil tvůrce">✕</button>
+
+      <div class="creator-dialog-head">
+        <div class="creator-avatar-bubble" id="creator-dialog-avatar">👤</div>
+        <div>
+          <h2 class="dialog-title" id="creator-dialog-name">Jméno tvůrce</h2>
+          <div class="creator-dialog-meta" id="creator-dialog-role">Režisér | Německo</div>
+          <div class="creator-tags-row" id="creator-dialog-tags"></div>
+        </div>
+      </div>
+
+      <div class="dialog-content">
+        <div class="dialog-desc-section">
+          <h3>Biografie & Tvůrčí zázemí</h3>
+          <p id="creator-dialog-bio">Životopis tvůrce...</p>
+        </div>
+
+        <div class="creator-events-section">
+          <h3>Vystoupení tvůrce na festivalu CHROMASYNC 2026</h3>
+          <div class="creator-events-list" id="creator-dialog-events-list"></div>
+        </div>
+      </div>
+
+      <div class="dialog-foot">
+        <button type="button" class="btn btn-glass" id="btn-creator-close-bottom">Zavřít</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- PERSONAL SCHEDULE DRAWER (INTERAKTIVNÍ FUNKCE 2: ROZVRH S DETEKCÍ KOLIZÍ) -->
+  <aside class="schedule-drawer" id="schedule-drawer" aria-labelledby="drawer-heading" aria-hidden="true">
+    <div class="drawer-backdrop" id="drawer-overlay"></div>
+    <div class="drawer-content-pane">
+      <div class="drawer-header-row">
+        <div>
+          <h2 class="drawer-title" id="drawer-heading">🔖 Můj osobní program</h2>
+          <span class="drawer-counter-txt" id="drawer-count-info">0 vybraných položek</span>
+        </div>
+        <button type="button" class="drawer-close-btn" id="btn-close-schedule-drawer" aria-label="Zavřít rozvrh">✕</button>
+      </div>
+
+      <!-- Real-time Collision Alert Box -->
+      <div class="collision-box hidden" id="collision-alert-box">
+        <span class="col-icon">⚠️</span>
+        <div class="col-body">
+          <strong>Detekován časový konflikt!</strong>
+          <p id="collision-alert-desc">Vybraná vystoupení se v daný den překrývají.</p>
+        </div>
+      </div>
+
+      <div class="drawer-items-list" id="drawer-schedule-items-container">
+        <!-- Dynamically injected items -->
+      </div>
+
+      <div class="drawer-foot-actions">
+        <button class="btn btn-glass" id="btn-clear-my-schedule">Vyprázdnit rozvrh</button>
+        <button class="btn btn-primary" id="btn-export-schedule">Exportovat / Tisk</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Floating Toast Notifications -->
+  <div class="toast-stack" id="toast-container" aria-live="assertive"></div>
+
+  <!-- Standalone Application Logic -->
+  <script src="app.js"></script>
+</body>
+</html>
+
