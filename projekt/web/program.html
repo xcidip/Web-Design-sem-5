@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html lang="cs">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Kompletní harmonogram festivalu CHROMASYNC 2026. 60 VR děl, 4 scény, filtrování podle technologií (6DOF, haptika, 360°) a osobní rozvrh s detekcí kolizí.">
+  <meta name="description"
+    content="Kompletní harmonogram festivalu CHROMASYNC 2026. 60 VR děl, 4 scény, filtrování podle technologií (6DOF, haptika, 360°) a osobní rozvrh s detekcí kolizí.">
   <title>Program a harmonogram | CHROMASYNC 2026</title>
 
   <!-- Google Fonts: Outfit, Plus Jakarta Sans, JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body class="dark-theme">
   <!-- Skip to Main Content Link -->
   <a href="#main-content" class="skip-link">Přejít k hlavnímu obsahu</a>
@@ -57,40 +62,65 @@
           <span class="label">Můj rozvrh</span>
           <span class="badge" id="schedule-counter">0</span>
         </button>
-        <a href="prakticke-info.html#tickets-pricing" class="btn btn-primary" style="padding: 0.45rem 0.9rem; font-size: 0.85rem;">
+        <a href="prakticke-info.html#tickets-pricing" class="btn btn-primary"
+          style="padding: 0.45rem 0.9rem; font-size: 0.85rem;">
           <span class="icon">🎟️</span> Vstupenky
         </a>
+        <button type="button" class="btn-hamburger" id="btn-hamburger" aria-label="Otevřít hlavní menu"
+          aria-expanded="false" aria-controls="mobile-nav-menu">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
       </div>
     </div>
+
+    <!-- MOBILE NAVIGATION MENU (HAMBURGER DRAWER) -->
+    <nav class="mobile-nav-menu" id="mobile-nav-menu" aria-label="Mobilní navigace" aria-hidden="true">
+      <div class="mobile-nav-inner">
+        <div class="mobile-nav-links">
+          <a href="index.html" class="mobile-nav-link">
+            <span class="m-icon">🏠</span>
+            <span class="m-text">Domů</span>
+          </a>
+          <a href="program.html" class="mobile-nav-link active" aria-current="page">
+            <span class="m-icon">📅</span>
+            <span class="m-text">Program</span>
+          </a>
+          <a href="tvurci.html" class="mobile-nav-link">
+            <span class="m-icon">👥</span>
+            <span class="m-text">Tvůrci</span>
+          </a>
+          <a href="index.html#stages-section" class="mobile-nav-link">
+            <span class="m-icon">🏛️</span>
+            <span class="m-text">Scény</span>
+          </a>
+          <a href="index.html#showcase-section" class="mobile-nav-link">
+            <span class="m-icon">🥽</span>
+            <span class="m-text">3D Lab</span>
+          </a>
+          <a href="prakticke-info.html" class="mobile-nav-link">
+            <span class="m-icon">ℹ️</span>
+            <span class="m-text">Praktické</span>
+          </a>
+        </div>
+
+        <div class="mobile-nav-actions">
+          <button type="button" class="btn btn-glass mobile-nav-schedule-btn" id="btn-open-schedule-drawer-mobile">
+            <span class="icon">🔖</span>
+            <span>Můj rozvrh</span>
+            <span class="badge" id="schedule-counter-mobile">0</span>
+          </button>
+          <a href="prakticke-info.html#tickets-pricing" class="btn btn-primary mobile-nav-tickets-btn">
+            <span class="icon">🎟️</span> Vstupenky
+          </a>
+        </div>
+      </div>
+    </nav>
   </header>
 
-  <!-- MOBILE BOTTOM NAVIGATION -->
-  <nav class="mobile-bottom-nav" id="mobile-bottom-nav" aria-label="Spodní navigace">
-    <a href="index.html" class="mobile-nav-item">
-      <span class="m-icon">🏠</span>
-      <span class="m-label">Domů</span>
-    </a>
-    <a href="program.html" class="mobile-nav-item active" aria-current="page">
-      <span class="m-icon">📅</span>
-      <span class="m-label">Program</span>
-    </a>
-    <a href="tvurci.html" class="mobile-nav-item">
-      <span class="m-icon">👥</span>
-      <span class="m-label">Tvůrci</span>
-    </a>
-    <a href="index.html#showcase-section" class="mobile-nav-item">
-      <span class="m-icon">🥽</span>
-      <span class="m-label">3D Lab</span>
-    </a>
-    <a href="prakticke-info.html" class="mobile-nav-item">
-      <span class="m-icon">ℹ️</span>
-      <span class="m-label">Info</span>
-    </a>
-    <a href="#schedule-drawer" class="mobile-nav-item" id="btn-open-schedule-drawer-mobile">
-      <span class="m-icon">🔖</span>
-      <span class="m-label">Rozvrh (<span id="schedule-counter-mobile">0</span>)</span>
-    </a>
-  </nav>
+  <!-- Backdrop for mobile hamburger menu -->
+  <div class="mobile-nav-backdrop" id="mobile-nav-backdrop" aria-hidden="true"></div>
 
   <!-- MAIN CONTENT -->
   <main id="main-content" class="main-content">
@@ -101,7 +131,8 @@
           <span class="section-tag-label">Harmonogram & Filtrování</span>
           <h1 class="section-heading">Festivalový <span class="text-gradient">program 2026</span></h1>
           <p class="section-lead">
-            60 programových děl ve 4 scénách během 3 festivalových dnů. Využijte filtry podle dnů, scén či technologií, přepínejte mezi mřížkou a časovou osou a sestavte si svůj osobní harmonogram bez časových kolizí.
+            60 programových děl ve 4 scénách během 3 festivalových dnů. Využijte filtry podle dnů, scén či technologií,
+            přepínejte mezi mřížkou a časovou osou a sestavte si svůj osobní harmonogram bez časových kolizí.
           </p>
         </div>
 
@@ -132,7 +163,9 @@
             <!-- Live Search Input -->
             <div class="search-box-wrapper">
               <span class="search-ico" aria-hidden="true">🔍</span>
-              <input type="search" id="program-search-input" placeholder="Hledat film, tvůrce, téma (např. 'Haptika', 'Kybernetický', 'Dokument')..." aria-label="Vyhledávání v programu">
+              <input type="search" id="program-search-input"
+                placeholder="Hledat film, tvůrce, téma (např. 'Haptika', 'Kybernetický', 'Dokument')..."
+                aria-label="Vyhledávání v programu">
               <button class="btn-clear-search" id="btn-clear-search" aria-label="Vymazat text vyhledávání">✕</button>
             </div>
 
@@ -163,7 +196,8 @@
           </div>
 
           <!-- Fast Quick-Pills & View Mode Switcher -->
-          <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 0.5rem;">
+          <div
+            style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 0.5rem;">
             <div class="quick-pills-bar" id="quick-pills-bar" style="margin-bottom: 0;">
               <span class="pills-title">Rychlé filtry:</span>
               <button class="quick-pill" data-pill="haptic">🦺 Haptika</button>
@@ -175,10 +209,12 @@
 
             <!-- View Mode Switcher -->
             <div class="view-mode-toggle" role="radiogroup" aria-label="Režim zobrazení programu">
-              <button type="button" class="btn-view-toggle active" id="btn-view-grid" aria-label="Zobrazit jako mřížku karet">
+              <button type="button" class="btn-view-toggle active" id="btn-view-grid"
+                aria-label="Zobrazit jako mřížku karet">
                 <span>🗂️ Mřížka</span>
               </button>
-              <button type="button" class="btn-view-toggle" id="btn-view-timeline" aria-label="Zobrazit jako časovou osu podle hodin">
+              <button type="button" class="btn-view-toggle" id="btn-view-timeline"
+                aria-label="Zobrazit jako časovou osu podle hodin">
                 <span>⏱️ Časová osa</span>
               </button>
             </div>
@@ -186,7 +222,8 @@
 
           <!-- Status Bar -->
           <div class="filter-status-row" style="margin-top: 1rem;">
-            <span class="results-counter" id="results-count-text" aria-live="polite">Zobrazeno 60 programových položek</span>
+            <span class="results-counter" id="results-count-text" aria-live="polite">Zobrazeno 60 programových
+              položek</span>
             <button class="btn-reset-filters-text" id="btn-reset-filters">Obnovit všechny filtry</button>
           </div>
         </div>
@@ -312,7 +349,8 @@
   <!-- CREATOR DETAIL MODAL (<dialog>) -->
   <dialog class="modal-dialog" id="creator-detail-dialog" aria-labelledby="creator-dialog-name">
     <div class="dialog-box">
-      <button type="button" class="dialog-close-btn" id="btn-close-creator-dialog" aria-label="Zavřít profil tvůrce">✕</button>
+      <button type="button" class="dialog-close-btn" id="btn-close-creator-dialog"
+        aria-label="Zavřít profil tvůrce">✕</button>
 
       <div class="creator-dialog-head">
         <div class="creator-avatar-bubble" id="creator-dialog-avatar">👤</div>
@@ -350,7 +388,8 @@
           <h2 class="drawer-title" id="drawer-heading">🔖 Můj osobní program</h2>
           <span class="drawer-counter-txt" id="drawer-count-info">0 vybraných položek</span>
         </div>
-        <button type="button" class="drawer-close-btn" id="btn-close-schedule-drawer" aria-label="Zavřít rozvrh">✕</button>
+        <button type="button" class="drawer-close-btn" id="btn-close-schedule-drawer"
+          aria-label="Zavřít rozvrh">✕</button>
       </div>
 
       <!-- Real-time Collision Alert Box -->
@@ -379,5 +418,5 @@
   <!-- Standalone Application Logic -->
   <script src="app.js"></script>
 </body>
-</html>
 
+</html>

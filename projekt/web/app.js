@@ -133,10 +133,91 @@ function initGlobalNavigation() {
   const btnDrawer = document.getElementById('btn-open-schedule-drawer');
   if (btnDrawer) btnDrawer.addEventListener('click', openScheduleDrawer);
 
+  // Hamburger Menu Elements
+  const btnHamburger = document.getElementById('btn-hamburger');
+  const mobileNavMenu = document.getElementById('mobile-nav-menu');
+  const mobileNavBackdrop = document.getElementById('mobile-nav-backdrop');
+
+  function openMobileMenu() {
+    if (!mobileNavMenu) return;
+    mobileNavMenu.classList.add('open');
+    if (btnHamburger) {
+      btnHamburger.classList.add('open');
+      btnHamburger.setAttribute('aria-expanded', 'true');
+    }
+    mobileNavMenu.setAttribute('aria-hidden', 'false');
+    if (mobileNavBackdrop) {
+      mobileNavBackdrop.classList.add('open');
+      mobileNavBackdrop.setAttribute('aria-hidden', 'false');
+    }
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMobileMenu() {
+    if (!mobileNavMenu) return;
+    mobileNavMenu.classList.remove('open');
+    if (btnHamburger) {
+      btnHamburger.classList.remove('open');
+      btnHamburger.setAttribute('aria-expanded', 'false');
+    }
+    mobileNavMenu.setAttribute('aria-hidden', 'true');
+    if (mobileNavBackdrop) {
+      mobileNavBackdrop.classList.remove('open');
+      mobileNavBackdrop.setAttribute('aria-hidden', 'true');
+    }
+    document.body.style.overflow = '';
+  }
+
+  function toggleMobileMenu() {
+    if (!mobileNavMenu) return;
+    if (mobileNavMenu.classList.contains('open')) {
+      closeMobileMenu();
+    } else {
+      openMobileMenu();
+    }
+  }
+
+  if (btnHamburger) {
+    btnHamburger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleMobileMenu();
+    });
+  }
+
+  if (mobileNavBackdrop) {
+    mobileNavBackdrop.addEventListener('click', closeMobileMenu);
+  }
+
+  // Close mobile menu when clicking any nav link
+  if (mobileNavMenu) {
+    const navLinks = mobileNavMenu.querySelectorAll('.mobile-nav-link, .mobile-nav-tickets-btn');
+    navLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        closeMobileMenu();
+      });
+    });
+  }
+
   const btnDrawerMobile = document.getElementById('btn-open-schedule-drawer-mobile');
   if (btnDrawerMobile) btnDrawerMobile.addEventListener('click', (e) => {
     e.preventDefault();
+    closeMobileMenu();
     openScheduleDrawer();
+  });
+
+  // Close mobile menu on Escape key
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileNavMenu && mobileNavMenu.classList.contains('open')) {
+      closeMobileMenu();
+      if (btnHamburger) btnHamburger.focus();
+    }
+  });
+
+  // Auto-close on resize to desktop viewport
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 1024 && mobileNavMenu && mobileNavMenu.classList.contains('open')) {
+      closeMobileMenu();
+    }
   });
 
   // URL query parameter routing (e.g. ?day=2 or ?stage=stage-matrix-6dof)

@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html lang="cs">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="CHROMASYNC VR FILM FESTIVAL 2026 – Mezinárodní festival VR kinematografie, 6DOF interakcí a prostorového zvuku v Praze na Výstavišti.">
+  <meta name="description"
+    content="CHROMASYNC VR FILM FESTIVAL 2026 – Mezinárodní festival VR kinematografie, 6DOF interakcí a prostorového zvuku v Praze na Výstavišti.">
   <title>CHROMASYNC 2026 | VR Film Festival Praha</title>
 
   <!-- Google Fonts: Outfit, Plus Jakarta Sans, JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body class="dark-theme">
   <!-- Skip to Main Content Link (WCAG Accessibility) -->
   <a href="#main-content" class="skip-link">Přejít k hlavnímu obsahu</a>
@@ -60,37 +65,61 @@
         <a href="#tickets-section" class="btn btn-primary" style="padding: 0.45rem 0.9rem; font-size: 0.85rem;">
           <span class="icon">🎟️</span> Vstupenky
         </a>
+        <button type="button" class="btn-hamburger" id="btn-hamburger" aria-label="Otevřít hlavní menu"
+          aria-expanded="false" aria-controls="mobile-nav-menu">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
       </div>
     </div>
+
+    <!-- MOBILE NAVIGATION MENU (HAMBURGER DRAWER) -->
+    <nav class="mobile-nav-menu" id="mobile-nav-menu" aria-label="Mobilní navigace" aria-hidden="true">
+      <div class="mobile-nav-inner">
+        <div class="mobile-nav-links">
+          <a href="index.html" class="mobile-nav-link active" aria-current="page">
+            <span class="m-icon">🏠</span>
+            <span class="m-text">Domů</span>
+          </a>
+          <a href="program.html" class="mobile-nav-link">
+            <span class="m-icon">📅</span>
+            <span class="m-text">Program</span>
+          </a>
+          <a href="tvurci.html" class="mobile-nav-link">
+            <span class="m-icon">👥</span>
+            <span class="m-text">Tvůrci</span>
+          </a>
+          <a href="#stages-section" class="mobile-nav-link">
+            <span class="m-icon">🏛️</span>
+            <span class="m-text">Scény</span>
+          </a>
+          <a href="#showcase-section" class="mobile-nav-link">
+            <span class="m-icon">🥽</span>
+            <span class="m-text">3D Lab</span>
+          </a>
+          <a href="prakticke-info.html" class="mobile-nav-link">
+            <span class="m-icon">ℹ️</span>
+            <span class="m-text">Praktické</span>
+          </a>
+        </div>
+
+        <div class="mobile-nav-actions">
+          <button type="button" class="btn btn-glass mobile-nav-schedule-btn" id="btn-open-schedule-drawer-mobile">
+            <span class="icon">🔖</span>
+            <span>Můj rozvrh</span>
+            <span class="badge" id="schedule-counter-mobile">0</span>
+          </button>
+          <a href="#tickets-section" class="btn btn-primary mobile-nav-tickets-btn">
+            <span class="icon">🎟️</span> Vstupenky
+          </a>
+        </div>
+      </div>
+    </nav>
   </header>
 
-  <!-- MOBILE BOTTOM NAVIGATION (Mobile-First Ergonomics / Thumb Zone) -->
-  <nav class="mobile-bottom-nav" id="mobile-bottom-nav" aria-label="Spodní navigace pro mobilní zařízení">
-    <a href="index.html" class="mobile-nav-item active" aria-current="page">
-      <span class="m-icon">🏠</span>
-      <span class="m-label">Domů</span>
-    </a>
-    <a href="program.html" class="mobile-nav-item">
-      <span class="m-icon">📅</span>
-      <span class="m-label">Program</span>
-    </a>
-    <a href="tvurci.html" class="mobile-nav-item">
-      <span class="m-icon">👥</span>
-      <span class="m-label">Tvůrci</span>
-    </a>
-    <a href="#showcase-section" class="mobile-nav-item">
-      <span class="m-icon">🥽</span>
-      <span class="m-label">3D Lab</span>
-    </a>
-    <a href="prakticke-info.html" class="mobile-nav-item">
-      <span class="m-icon">ℹ️</span>
-      <span class="m-label">Info</span>
-    </a>
-    <a href="#schedule-drawer" class="mobile-nav-item" id="btn-open-schedule-drawer-mobile">
-      <span class="m-icon">🔖</span>
-      <span class="m-label">Rozvrh (<span id="schedule-counter-mobile">0</span>)</span>
-    </a>
-  </nav>
+  <!-- Backdrop for mobile hamburger menu -->
+  <div class="mobile-nav-backdrop" id="mobile-nav-backdrop" aria-hidden="true"></div>
 
   <!-- MAIN CONTENT -->
   <main id="main-content" class="main-content">
@@ -135,7 +164,8 @@
           </h1>
 
           <p class="hero-lead">
-            Mezinárodní festival VR kinematografie, prostorového zvuku a 6DOF interaktivních světů v Praze. 60 filmů a zážitků ve 4 špičkových scénách. Vstupte do filmu, který vás obklopí.
+            Mezinárodní festival VR kinematografie, prostorového zvuku a 6DOF interaktivních světů v Praze. 60 filmů a
+            zážitků ve 4 špičkových scénách. Vstupte do filmu, který vás obklopí.
           </p>
 
           <div class="hero-cta-buttons">
@@ -205,7 +235,8 @@
           <span class="section-tag-label">Kurátorský výběr</span>
           <h2 class="section-heading">To nejlepší z <span class="text-gradient">CHROMASYNC 2026</span></h2>
           <p class="section-lead">
-            Čtyři vlajkové lodě festivalu reprezentující špičku světové VR kinematografie, volného pohybu 6DOF a haptických vjemů.
+            Čtyři vlajkové lodě festivalu reprezentující špičku světové VR kinematografie, volného pohybu 6DOF a
+            haptických vjemů.
           </p>
         </div>
 
@@ -228,7 +259,8 @@
           <span class="section-tag-label">Prostory a hardware</span>
           <h2 class="section-heading">Festivalové <span class="text-gradient">scény & pavilony</span></h2>
           <p class="section-lead">
-            Čtyři specializované zóny v Křižíkových pavilonech na Výstavišti Praha, každá vybavená specifickou VR technologií.
+            Čtyři specializované zóny v Křižíkových pavilonech na Výstavišti Praha, každá vybavená specifickou VR
+            technologií.
           </p>
         </div>
 
@@ -245,7 +277,8 @@
           <span class="section-tag-label">Interaktivní simulátor</span>
           <h2 class="section-heading">Zkušebna imerze & <span class="text-gradient">FOV Simulátor</span></h2>
           <p class="section-lead">
-            Otestujte si přímo v prohlížeči rozdíl mezi 360° filmem a plným 6DOF pohybem v prostoru se simulací haptických vjemů.
+            Otestujte si přímo v prohlížeči rozdíl mezi 360° filmem a plným 6DOF pohybem v prostoru se simulací
+            haptických vjemů.
           </p>
         </div>
 
@@ -294,7 +327,8 @@
           <span class="section-tag-label">Vstupenky & Akreditace</span>
           <h2 class="section-heading">Festivalové <span class="text-gradient">pasy</span></h2>
           <p class="section-lead">
-            Garantovaný přístup na festivalové scény, do 6DOF arény a možnost online rezervace časových slotů na headsety.
+            Garantovaný přístup na festivalové scény, do 6DOF arény a možnost online rezervace časových slotů na
+            headsety.
           </p>
         </div>
 
@@ -353,7 +387,8 @@
           </p>
         </div>
 
-        <div class="showreel-player-box" id="showreel-player-box" role="button" tabindex="0" aria-label="Spustit oficiální festivalový trailer">
+        <div class="showreel-player-box" id="showreel-player-box" role="button" tabindex="0"
+          aria-label="Spustit oficiální festivalový trailer">
           <div class="showreel-play-btn" aria-hidden="true">▶</div>
           <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-secondary);">
             Kliknutím spustíte 4K ukázku s prostorovým zvukem Spatial Audio
@@ -369,7 +404,8 @@
       <div class="footer-info">
         <span class="footer-logo">CHROMA<span class="text-gradient">SYNC</span> 2026</span>
         <p>Oficiální web festivalu virtuální reality a prostorové kinematografie. Web Design semestr 5.</p>
-        <span class="footer-copy">© 2026 CHROMASYNC VR Film Festival. Výstaviště Praha. 100% offline kompatibilní.</span>
+        <span class="footer-copy">© 2026 CHROMASYNC VR Film Festival. Výstaviště Praha. 100% offline
+          kompatibilní.</span>
       </div>
       <div class="footer-links">
         <a href="index.html">Domů</a>
@@ -463,7 +499,8 @@
   <!-- CREATOR DETAIL MODAL (<dialog>) -->
   <dialog class="modal-dialog" id="creator-detail-dialog" aria-labelledby="creator-dialog-name">
     <div class="dialog-box">
-      <button type="button" class="dialog-close-btn" id="btn-close-creator-dialog" aria-label="Zavřít profil tvůrce">✕</button>
+      <button type="button" class="dialog-close-btn" id="btn-close-creator-dialog"
+        aria-label="Zavřít profil tvůrce">✕</button>
 
       <div class="creator-dialog-head">
         <div class="creator-avatar-bubble" id="creator-dialog-avatar">👤</div>
@@ -501,7 +538,8 @@
           <h2 class="drawer-title" id="drawer-heading">🔖 Můj osobní program</h2>
           <span class="drawer-counter-txt" id="drawer-count-info">0 vybraných položek</span>
         </div>
-        <button type="button" class="drawer-close-btn" id="btn-close-schedule-drawer" aria-label="Zavřít rozvrh">✕</button>
+        <button type="button" class="drawer-close-btn" id="btn-close-schedule-drawer"
+          aria-label="Zavřít rozvrh">✕</button>
       </div>
 
       <!-- Real-time Collision Alert Box -->
@@ -530,5 +568,5 @@
   <!-- Standalone Application Logic -->
   <script src="app.js"></script>
 </body>
-</html>
 
+</html>
