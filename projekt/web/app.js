@@ -997,25 +997,31 @@ function renderCreators() {
   creators.forEach(c => {
     const card = document.createElement('article');
     card.className = 'creator-card';
+
+    // Deterministic accent hue so the 60 creator avatars feel varied.
+    const hue = [...c.name].reduce((acc, ch) => acc + ch.charCodeAt(0), 0) % 360;
+    card.style.setProperty('--creator-hue', hue);
+
     card.innerHTML = `
-      <div class="creator-card-header">
-        <div class="creator-avatar-preview">👤</div>
-        <div>
+      <div class="creator-card-head">
+        <div class="creator-avatar" aria-hidden="true">👤</div>
+        <div class="creator-headings">
           <h3 class="creator-name">${c.name}</h3>
           <div class="creator-role">${c.role}</div>
-          <div class="creator-country">🌍 ${c.country}</div>
+          <div class="creator-country">📍 ${c.country}</div>
         </div>
       </div>
       <p class="creator-bio-snippet">${c.bio || ''}</p>
       <div class="creator-tags">
-        ${(c.tags || []).map(t => `<span class="spec-badge">${t}</span>`).join('')}
+        ${(c.tags || []).slice(0, 3).map(t => `<span class="spec-badge">${t}</span>`).join('')}
       </div>
-      <button type="button" class="btn btn-glass btn-view-creator" style="width:100%; margin-top:1rem; font-size:0.85rem;">
-        Zobrazit profil & díla →
-      </button>
+      <div class="creator-card-foot">
+        <span class="creator-cta">Zobrazit profil &amp; díla <span aria-hidden="true">→</span></span>
+      </div>
+      <button type="button" class="creator-card-hit" aria-label="Zobrazit profil: ${c.name}"></button>
     `;
 
-    card.addEventListener('click', () => openCreatorDetail(c.id));
+    card.querySelector('.creator-card-hit').addEventListener('click', () => openCreatorDetail(c.id));
     DOM.creatorsGrid.appendChild(card);
   });
 }
